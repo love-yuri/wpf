@@ -8,4 +8,12 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\LoveYuri\LoveYuri.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
+    </ItemGroup>
+
 </Project>

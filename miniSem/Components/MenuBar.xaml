@@ -15,7 +15,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Padding="2" Background="{TemplateBinding Background}" 
+                        <Border Padding="4" Background="{TemplateBinding Background}" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -25,7 +25,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Pink"/>
+                    <Setter Property="Background" Value="Gray"/>
                     <Setter Property="Cursor" Value="Hand" />
                 </Trigger>                
             </Style.Triggers>
@@ -34,6 +34,58 @@
             <Setter Property="Width" Value="24" />
             <Setter Property="Height" Value="23" />
             <Setter Property="Margin" Value="4 0 0 0" />
+        </Style>
+        
+        <!-- MenuItem 样式 -->
+        <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Border x:Name="templateRoot" CornerRadius="3" Background="Transparent" BorderBrush="Transparent" BorderThickness="0.8" SnapsToDevicePixels="true">
+                            <StackPanel>
+                                <ContentPresenter 
+                                    x:Name="header" 
+                                    TextElement.Foreground="#1a1c1e" 
+                                    Margin="12 4" 
+                                    ContentSource="Header"
+                                    HorizontalAlignment="Left" 
+                                    RecognizesAccessKey="True" 
+                                    SnapsToDevicePixels="True" 
+                                    VerticalAlignment="Center"
+                                />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PlacementTarget="{Binding ElementName=templateRoot}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                                    <Border x:Name="SubMenuBorder" CornerRadius="5" Padding="2" Background="#cce7e9ed" BorderBrush="#ced4e3" BorderThickness="0.8">
+                                        <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer,TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                    <Rectangle x:Name="OpaqueRect" Width="{Binding ActualWidth, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Fill="#cce7e9ed" />
+                                                </Canvas>
+                                                <ItemsPresenter x:Name="ItemsPresenter" Grid.IsSharedSizeScope="true" KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.TabNavigation="Cycle" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </StackPanel>
+                        </Border>
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuBackgroundHoverColor}" />
+                                <Setter Property="TextElement.Foreground" TargetName="header" Value="White" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuBackgroundHoverColor}" />
+                                <Setter Property="TextElement.Foreground" TargetName="header" Value="White" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="#FF888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter> 
         </Style>
     </UserControl.Resources>
     
@@ -45,12 +97,20 @@
         </Grid.ColumnDefinitions>
         
         <Image Style="{StaticResource LogoImg}" Grid.Column="0" Source="/Assets/Logo.png" />
-        <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Transparent">
-            <TextBlock Text="文件" VerticalAlignment="Center" />
-            <TextBlock Text="电子光学操作" VerticalAlignment="Center" />
-            <TextBlock Text="探测器" VerticalAlignment="Center" />
-        
-        </StackPanel>
+        <Menu Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
+            <MenuItem Header="文件" Style="{StaticResource MenuItemStyle}">
+                <MenuItem Header="打开当前文件夹" Style="{StaticResource MenuItemStyle}" />
+                <MenuItem Name="ImportImg" Header="导入图片" Style="{StaticResource MenuItemStyle}" />
+                <Separator Width="{Binding ActualWidth,ElementName=ImportImg}" Foreground="#80999fb0" Margin="-30,0,0,0"/>
+                <MenuItem Header="导出图片" Style="{StaticResource MenuItemStyle}" />
+                <MenuItem Header="导入图片" Style="{StaticResource MenuItemStyle}" />
+            </MenuItem>
+            <MenuItem Header="电子光学操作" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="探测器" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="扫描模式" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="工具" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="帮助" Style="{StaticResource MenuItemStyle}" />
+        </Menu>
         
         <StackPanel Grid.Column="2" Orientation="Horizontal">
             <Button Click="MiniWindow" Style="{StaticResource MenuWindowButton}">

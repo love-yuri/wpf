@@ -14,9 +14,10 @@ namespace miniSem.Utils {
         /// <param name="func">回调函数</param>
         /// <param name="runInUi">是否在ui线程执行</param>
         public static void Timeout(int mes, Action func, bool runInUi = false) {
-            var timer = new Timer(mes);
+            var timer = new Timer(mes) {
+                AutoReset = false
+            };
         
-            timer.AutoReset = false;
             timer.Elapsed += (o, e) => {
                 try {
                     if (runInUi) {

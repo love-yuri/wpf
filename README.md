@@ -68,6 +68,22 @@ protected override void OnMouseMove(MouseEventArgs e) {
             </Border>
         </ControlTemplate>
     </Setter.Value>
+    
+    // MenuItem样式设计
+    <ControlTemplate TargetType="MenuItem">
+         <Border x:Name="templateRoot" BorderThickness="0.8" SnapsToDevicePixels="true">
+            <ContentPresenter 
+                x:Name="header" // 控件名称，用于后面设置样式
+                TextElement.Foreground ="#1a1c1e" 
+                Margin="6 4" 
+                ContentSource="Header" // 内容原像素
+                HorizontalAlignment="Left"  // 水平对齐
+                RecognizesAccessKey="True" // 启用快捷键支持 
+                SnapsToDevicePixels="True" // 启用像素对齐，防止模糊渲染
+                VerticalAlignment="Center" // 垂直
+            />
+        </Border>
+    </ControlTemplate>
 </Setter>
 ```
 
@@ -88,7 +104,8 @@ protected override void OnMouseMove(MouseEventArgs e) {
 ```xaml
 <Style.Triggers>
     // 设置鼠标进入时样式
-    <Trigger Property="IsMouseOver" Value="True">
+    // TargetName="templateRoot" 指定修改最外层的元素
+    <Trigger Property="IsMouseOver" Value="True" TargetName="templateRoot">
         <Setter Property="Background" Value="Pink"/>
         <Setter Property="Cursor" Value="Hand" />
     </Trigger>                

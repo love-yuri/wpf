@@ -52,6 +52,7 @@
             <SubType>Designer</SubType>
         </ApplicationDefinition>
         <Compile Include="Utils\CommonUtils.cs" />
+        <Compile Include="Utils\ResourceUtils.cs" />
         <Page Include="Components\MenuBar.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -68,7 +69,11 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="Properties\en-us.xaml" />
+        <Page Include="Properties\zh-cn.xaml" />
         <Page Include="Styles\BaseStyle.xaml" />
+        <Page Include="Styles\DarkStyle.xaml" />
+        <Page Include="Styles\LightStyle.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">

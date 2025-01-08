@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="30" d:DesignWidth="300">
+             d:DesignHeight="30" d:DesignWidth="650">
+    
     
     <UserControl.Resources>
         <Style x:Key="MenuWindowButton" TargetType="Button">
@@ -15,7 +16,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Padding="4" Background="{TemplateBinding Background}" 
+                        <Border CornerRadius="4" Padding="4" Background="{TemplateBinding Background}" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -27,7 +28,7 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="Gray"/>
                     <Setter Property="Cursor" Value="Hand" />
-                </Trigger>                
+                </Trigger>    
             </Style.Triggers>
         </Style>
         <Style x:Key="LogoImg" TargetType="Image">
@@ -53,7 +54,15 @@
                                     SnapsToDevicePixels="True" 
                                     VerticalAlignment="Center"
                                 />
-                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PlacementTarget="{Binding ElementName=templateRoot}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                                <Popup
+                                    x:Name="PART_Popup" 
+                                    AllowsTransparency="true" 
+                                    Focusable="false" 
+                                    IsOpen="{Binding IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}" 
+                                    Placement="Bottom" 
+                                    PlacementTarget="{Binding ElementName=templateRoot}"
+                                    PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                                >
                                     <Border x:Name="SubMenuBorder" CornerRadius="5" Padding="2" Background="#cce7e9ed" BorderBrush="#ced4e3" BorderThickness="0.8">
                                         <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer,TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                             <Grid RenderOptions.ClearTypeHint="Enabled">
@@ -89,7 +98,7 @@
         </Style>
     </UserControl.Resources>
     
-    <Grid>
+    <Grid Margin="-1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" /> 
@@ -98,19 +107,23 @@
         
         <Image Style="{StaticResource LogoImg}" Grid.Column="0" Source="/Assets/Logo.png" />
         <Menu Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
-            <MenuItem Header="文件" Style="{StaticResource MenuItemStyle}">
-                <MenuItem Header="打开当前文件夹" Style="{StaticResource MenuItemStyle}" />
-                <MenuItem Name="ImportImg" Header="导入图片" Style="{StaticResource MenuItemStyle}" />
-                <Separator Width="{Binding ActualWidth,ElementName=ImportImg}" Foreground="#80999fb0" Margin="-30,0,0,0"/>
-                <MenuItem Header="导出图片" Style="{StaticResource MenuItemStyle}" />
-                <MenuItem Header="导入图片" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="{DynamicResource File}" Style="{StaticResource MenuItemStyle}">
+                <MenuItem Header="{DynamicResource OpenCurrentFolder}" Style="{StaticResource MenuItemStyle}" />
+                <MenuItem Name="ImportImg" Header="{DynamicResource ImportImg}" Style="{StaticResource MenuItemStyle}" />
+                <Separator Width="{Binding ActualWidth, ElementName=ImportImg}" Foreground="#80999fb0" Margin="-30,0,0,0"/>
+                <MenuItem Header="{DynamicResource ExportImg}" Style="{StaticResource MenuItemStyle}" />
+                <MenuItem Header="{DynamicResource ImportFile}" Style="{StaticResource MenuItemStyle}" />
             </MenuItem>
-            <MenuItem Header="电子光学操作" Style="{StaticResource MenuItemStyle}" />
-            <MenuItem Header="探测器" Style="{StaticResource MenuItemStyle}" />
-            <MenuItem Header="扫描模式" Style="{StaticResource MenuItemStyle}" />
-            <MenuItem Header="工具" Style="{StaticResource MenuItemStyle}" />
-            <MenuItem Header="帮助" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="{DynamicResource OpticalOperations}" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="{DynamicResource Detector}" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="{DynamicResource ScanMode}" Style="{StaticResource MenuItemStyle}" />
+            <MenuItem Header="{DynamicResource Tools}" Style="{StaticResource MenuItemStyle}">
+                <MenuItem Click="ChangeLanguage" Header="{DynamicResource ChangeLanguage}" Style="{StaticResource MenuItemStyle}" />
+                <MenuItem Click="ChangeTheme" Header="{DynamicResource ChangeTheme}" Style="{StaticResource MenuItemStyle}" />
+            </MenuItem>
+            <MenuItem Header="{DynamicResource Help}" Style="{StaticResource MenuItemStyle}" />
         </Menu>
+
         
         <StackPanel Grid.Column="2" Orientation="Horizontal">
             <Button Click="MiniWindow" Style="{StaticResource MenuWindowButton}">

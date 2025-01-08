@@ -6,89 +6,17 @@
     WindowStyle="None"
     WindowStartupLocation="CenterScreen"
     xmlns:components="clr-namespace:miniSem.Components"
-
     mc:Ignorable="d"
-    Title="MainWindow" Height="350" Width="525">
+    Background="{DynamicResource GlobalBackground}"
+    Title="MainWindow" Height="350" Width="625">
     
-    <Window.Resources>
-        <Storyboard x:Key="OnChecked">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftBorder">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="OnUnchecked">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftBorder">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="200"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="ToggleButton.Checked" SourceName="CheckBox">
-            <BeginStoryboard Storyboard="{StaticResource OnChecked}"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ToggleButton.Unchecked" SourceName="CheckBox">
-            <BeginStoryboard Storyboard="{StaticResource OnUnchecked}"/>
-        </EventTrigger>
-    </Window.Triggers>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
     
-    <StackPanel Orientation="Vertical">
-        <components:MenuBar />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" x:Name="LeftBorder" Width="188" Background="LightCyan">
-                <TextBlock Text="菜单区域" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
-            <Border Grid.Column="1" >
-                <CheckBox x:Name="CheckBox">
-                    <CheckBox.Style>
-                        <Style TargetType="CheckBox">
-                            <Setter Property="Width" Value="50"/>
-                            <Setter Property="Height" Value="50"/>
-                            <Setter Property="Content" Value="开"/>
-                            <Setter Property="Background" Value="LightGreen"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="CheckBox">
-                                        <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CornerRadius="60" Background="{TemplateBinding Background}">
-                                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter Property="Background" Value="Red"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Content" Value="关"/>
-                                </Trigger>
-                                <EventTrigger RoutedEvent="MouseEnter">
-                                    <EventTrigger.Actions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Width" To="60" />
-                                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Height" To="60" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger.Actions>
-                                </EventTrigger>
-                                <EventTrigger RoutedEvent="MouseLeave">
-                                    <EventTrigger.Actions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Width" To="50" />
-                                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Height" To="50" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger.Actions>
-                                </EventTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </CheckBox.Style>
-                </CheckBox>
-            </Border>
-        </Grid>
-    </StackPanel>
+    <Border Padding="5">
+        <StackPanel Orientation="Vertical" Background="{DynamicResource GlobalBackground}">
+            <components:MenuBar />
+        </StackPanel>
+    </Border>
 </Window>

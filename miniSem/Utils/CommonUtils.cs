@@ -5,6 +5,9 @@ using System.Windows;
 
 namespace miniSem.Utils {
     public static class CommonUtils {
+        /// <summary>
+        /// 返回当前Window
+        /// </summary>
         public static Window CurrentWindow => Application.Current.MainWindow;
         
         /// <summary>

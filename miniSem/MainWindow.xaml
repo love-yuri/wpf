@@ -7,6 +7,7 @@
     WindowStartupLocation="CenterScreen"
     xmlns:components="clr-namespace:miniSem.Components"
     mc:Ignorable="d"
+    SnapsToDevicePixels="True"
     Background="{DynamicResource GlobalBackground}"
     Title="MainWindow" Height="350" Width="625">
     
@@ -17,6 +18,7 @@
     <Border Padding="5">
         <StackPanel Orientation="Vertical" Background="{DynamicResource GlobalBackground}">
             <components:MenuBar />
+            <Slider Style="{StaticResource SliderStyle}"  IsSelectionRangeEnabled="True" />
         </StackPanel>
     </Border>
 </Window>

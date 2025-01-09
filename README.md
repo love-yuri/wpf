@@ -31,6 +31,81 @@ protected override void OnMouseMove(MouseEventArgs e) {
 }
 ```
 
+### 动态切换语言/主题
+
+1. 添加中文英文资源文件
+
+   ```xaml
+   <ResourceDictionary
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+   >
+       <!-- zh-en.xaml -->
+       <sys:String x:Key="File">文件</sys:String>
+   </ResourceDictionary>
+   ```
+
+2. (可选)在App.xml添加默认语言文件 
+
+3. 继承`ResourceDictionary` 类标识语言文件
+
+   ```c#
+   public class LanguageResource : ResourceDictionary {}
+   public enum LanguageType {
+       Chinese,
+       English
+   }
+   ```
+
+4. 获取系统资源切换Source
+
+   ```c#
+   /// <summary>
+   /// 切换全局系统语言，如果有默认语言需要使用LanguageResource导入
+   /// </summary>
+   /// <param name="type"></param>
+   public static void ChangeLanguage(LanguageType type) {
+       var res = Application.Current.Resources.MergedDictionaries;
+       var language = res.FirstOrDefault(it => it is LanguageResource);
+       if (language == null) {
+           language = new LanguageResource();
+           res.Add(language);
+       }
+   
+       switch (type) {
+           case LanguageType.Chinese: {
+               // UriKind.RelativeOrAbsolute 允许Uri根据字符串推断是否是相对或者绝对uri
+               language.Source = new Uri("/Properties/zh-cn.xaml", UriKind.RelativeOrAbsolute);
+               break;
+           }
+   
+           case LanguageType.English: {
+               language.Source = new Uri("/Properties/en-us.xaml", UriKind.RelativeOrAbsolute);
+               break;
+           }
+   
+           default: {
+               return;
+           }
+       }
+   }
+   ```
+
+### 去除原来的窗口顶部
+
+1. window属性添加 `WindowStyle="None"`
+
+2. 去除顶部留白
+
+   ```xaml
+   <WindowChrome.WindowChrome>
+       <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" GlassFrameThickness="0" />
+   </WindowChrome.WindowChrome>
+   ```
+
+   
+
 ## 样式
 
 > 样式属于资源文件，也就是属于`Resource`
@@ -84,6 +159,10 @@ protected override void OnMouseMove(MouseEventArgs e) {
             />
         </Border>
     </ControlTemplate>
+                    
+                    
+    // 自定义带菜单的menuItem的样式
+    
 </Setter>
 ```
 

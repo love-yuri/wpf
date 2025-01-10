@@ -18,7 +18,30 @@
     <Border Padding="5">
         <StackPanel Orientation="Vertical" Background="{DynamicResource GlobalBackground}">
             <components:MenuBar />
-            <Slider Style="{StaticResource SliderStyle}"  IsSelectionRangeEnabled="True" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Slider
+                    Minimum="0"
+                    Maximum="100"
+                    Grid.Column="1" 
+                    Style="{StaticResource SliderStyle}"  
+                    IsSelectionRangeEnabled="True" 
+                />
+                <RepeatButton
+                    Grid.Column="0" 
+                    Style="{StaticResource OnlyTextRepeatButtonStyle}" 
+                    Content="-" 
+                />
+                <RepeatButton 
+                    Grid.Column="2" 
+                    Style="{StaticResource OnlyTextRepeatButtonStyle}" 
+                    Content="+" 
+                />
+            </Grid>
         </StackPanel>
     </Border>
 </Window>

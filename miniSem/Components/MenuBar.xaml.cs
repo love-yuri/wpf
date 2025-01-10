@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using miniSem.Utils;
+using miniSem.Base.Utils;
 
 namespace miniSem.Components {
     public delegate void MenubarClickEvent();

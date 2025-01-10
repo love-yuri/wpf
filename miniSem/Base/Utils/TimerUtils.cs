@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Timers;
 using System.Windows;
+using System.Windows.Threading;
+using Timer = System.Timers.Timer;
 // ReSharper disable UnusedMember.Global
 
-namespace miniSem.Utils {
-    public static class CommonUtils {
-        /// <summary>
-        /// 返回当前Window
-        /// </summary>
-        public static Window CurrentWindow => Application.Current.MainWindow;
-        
+namespace miniSem.Base.Utils {
+
+    // ReSharper disable once UnusedType.Global
+    public static class TimerUtils {
+
         /// <summary>
         /// 定时器
         /// </summary>
@@ -17,10 +16,9 @@ namespace miniSem.Utils {
         /// <param name="func">回调函数</param>
         /// <param name="runInUi">是否在ui线程执行</param>
         public static void Timeout(int mes, Action func, bool runInUi = false) {
-            var timer = new Timer(mes) {
-                AutoReset = false
-            };
-        
+            var timer = new Timer(mes);
+
+            timer.AutoReset = false;
             timer.Elapsed += (o, e) => {
                 try {
                     if (runInUi) {

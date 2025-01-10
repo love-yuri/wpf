@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace miniSem.Utils {
+namespace miniSem.Base.Utils {
     /// <summary>
     /// 语言资源，切换语言用
     /// </summary>

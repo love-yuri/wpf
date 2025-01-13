@@ -10,6 +10,13 @@ namespace miniSem.Base.Utils {
         /// </summary>
         public static Window CurrentWindow => Application.Current.MainWindow;
         
+        /// <summary>
+        /// 根据泛型创建实例
+        /// </summary>
+        /// <typeparam name="T">实例泛型</typeparam>
+        /// <returns>返回创建的实例</returns>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="TypeCastException"></exception>
         public static T CreateInstance<T>() where T : class {
             var type = typeof(T);
             var instance = Activator.CreateInstance(type);

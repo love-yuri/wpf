@@ -18,7 +18,8 @@ namespace miniSem.Base.Config {
         private readonly ConcurrentDictionary<string, object> _configData = new ConcurrentDictionary<string, object>();
 
         /// <summary>
-        /// 是否在属性更改时写入数据
+        /// 是否在属性更改时写入数据, 默认为true
+        /// 不保留配置，每次启动都是默认值
         /// </summary>
         [JsonIgnore]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -91,13 +92,13 @@ namespace miniSem.Base.Config {
         /// <summary>
         /// 读取配置
         /// </summary>
-        /// <param name="value">默认值</param>
+        /// <param name="defaultValue">默认值</param>
         /// <param name="key">默认key</param>
         /// <typeparam name="TV">值类型</typeparam>
         /// <returns></returns>
-        protected TV GetValue<TV>(TV value, [CallerMemberName] string key = "") {
+        protected TV GetValue<TV>(TV defaultValue, [CallerMemberName] string key = "") {
             _configData.TryGetValue(key,out var v);
-            if (v == null) return value;
+            if (v == null) return defaultValue;
             switch (v) {
                 case TV result: return result;
                 // ReSharper disable once PossibleInvalidCastException

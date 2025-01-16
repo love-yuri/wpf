@@ -1,0 +1,15 @@
+﻿<mvvm:BaseDialog x:Class="miniSem.Components.TestDialog"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:local="clr-namespace:miniSem.Components"
+            xmlns:mvvm="clr-namespace:miniSem.Base.Mvvm"
+            mc:Ignorable="d"
+            Title="TestDialog" Height="450" Width="800">
+ 
+    
+    <Grid>
+        <Button Click="CloseWindow" Content="关闭页面" Height="30" Width="200" Style="{StaticResource ColorfulButtonStyle}" />
+    </Grid>
+</mvvm:BaseDialog>

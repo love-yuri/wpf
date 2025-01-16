@@ -10,6 +10,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Components/Styles/SliderStyle.xaml" />
         <ResourceDictionary Source="/Components/Styles/RepeatButtonStyle.xaml" />
+        <ResourceDictionary Source="/Components/Styles/ButtonStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

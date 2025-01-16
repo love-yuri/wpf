@@ -57,8 +57,10 @@
         <Compile Include="Base\Config\GlobalConfig.cs" />
         <Compile Include="Base\Log.cs" />
         <Page Include="Components\MenuBar.xaml" />
+        <Page Include="Components\Styles\ButtonStyle.xaml" />
         <Page Include="Components\Styles\RepeatButtonStyle.xaml" />
         <Page Include="Components\Styles\SliderStyle.xaml" />
+        <Page Include="Components\TestDialog.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -67,11 +69,18 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Include="Base\Mvvm\BaseCommand.cs" />
+        <Compile Include="Base\Mvvm\BaseDialog.cs" />
+        <Compile Include="Base\Mvvm\BaseViewModel.cs" />
         <Compile Include="Base\Utils\CommonUtils.cs" />
+        <Compile Include="Base\Utils\FileUtils.cs" />
         <Compile Include="Base\Utils\ResourceUtils.cs" />
         <Compile Include="Base\Utils\TimerUtils.cs" />
         <Compile Include="Components\MenuBar.xaml.cs">
           <DependentUpon>MenuBar.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Components\TestDialog.xaml.cs">
+          <DependentUpon>TestDialog.xaml</DependentUpon>
         </Compile>
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>

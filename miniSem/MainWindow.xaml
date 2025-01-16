@@ -5,9 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     WindowStyle="None"
     WindowStartupLocation="CenterScreen"
+    UseLayoutRounding="True"
     xmlns:components="clr-namespace:miniSem.Components"
     mc:Ignorable="d"
     SnapsToDevicePixels="True"
+    Name="Root"
     Background="{DynamicResource GlobalBackground}"
     Title="MainWindow" Height="350" Width="625">
     
@@ -16,14 +18,20 @@
     </WindowChrome.WindowChrome>
     
     <Border Padding="5">
+        <Border.Effect>
+            <BlurEffect Radius="1" KernelType="Gaussian"/>
+        </Border.Effect>
+        
         <StackPanel Orientation="Vertical" Background="{DynamicResource GlobalBackground}">
             <components:MenuBar />
             <Grid>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+                
                 <Slider
                     Minimum="0"
                     Maximum="100"
@@ -42,6 +50,13 @@
                     Content="+" 
                 />
             </Grid>
+            <Button 
+                Style="{StaticResource ColorfulButtonStyle}"
+                Width="200" 
+                Height="30" 
+                Content="炫彩按钮" 
+                Command="{Binding ElementName=Root,Path=ClickCommand}"
+            />
         </StackPanel>
     </Border>
 </Window>

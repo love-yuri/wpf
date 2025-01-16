@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
+             x:Name="Root"
              d:DesignHeight="30" d:DesignWidth="650">
     
     
@@ -108,7 +109,7 @@
         <Image Style="{StaticResource LogoImg}" Grid.Column="0" Source="/Assets/Logo.png" />
         <Menu Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
             <MenuItem Header="{DynamicResource File}" Style="{StaticResource MenuItemStyle}">
-                <MenuItem Header="{DynamicResource OpenCurrentFolder}" Style="{StaticResource MenuItemStyle}" />
+                <MenuItem Command="{Binding ElementName=Root, Path=OpenCurrentPathCommand}" Header="{DynamicResource OpenCurrentFolder}" Style="{StaticResource MenuItemStyle}" />
                 <MenuItem Name="ImportImg" Header="{DynamicResource ImportImg}" Style="{StaticResource MenuItemStyle}" />
                 <Separator Width="{Binding ActualWidth, ElementName=ImportImg}" Foreground="#80999fb0" Margin="-30,0,0,0"/>
                 <MenuItem Header="{DynamicResource ExportImg}" Style="{StaticResource MenuItemStyle}" />

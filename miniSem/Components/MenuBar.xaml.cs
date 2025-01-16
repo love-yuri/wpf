@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using miniSem.Base.Mvvm;
 using miniSem.Base.Utils;
 
 namespace miniSem.Components {
@@ -9,6 +10,7 @@ namespace miniSem.Components {
         public MenubarClickEvent ImportImgClick = null;
         private LanguageType _languageType = LanguageType.Chinese;
         private ThemeType _themeType = ThemeType.Light;
+        public BaseCommand OpenCurrentPathCommand { get; } = BaseCommand.Create(FileUtils.OpenDirectory);
         
         public MenuBar() {
             InitializeComponent();

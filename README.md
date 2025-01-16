@@ -207,7 +207,63 @@ protected override void OnMouseMove(MouseEventArgs e) {
 </Grid>
 ```
 
+## 动画
+
+> 动画的本质是图片不断的变化，而wpf的动画则是同一时间线上不同的输出组成的。
+
+### DoubleAnimation
+
+> 看名字就知道这是一个数值变化的动画，他在动画时间输出不断变化的数值。下面是他们的6个常用属性。
+>
+> 表格来自: [WPF中文网](https://www.wpfsoft.com/2024/08/21/2957.html)
+
+| 属性名         | 说明                                           |
+| -------------- | ---------------------------------------------- |
+| From           | 获取或设置动画的起始值。                       |
+| To             | 获取或设置动画的结束值。                       |
+| By             | 获取或设置动画更改其起始值所依据的总数。       |
+| EasingFunction | 获取或设置应用于此动画的缓动函数。             |
+| IsAdditive     | 是否应将目标属性的当前值添加到此动画的起始值。 |
+| IsCumulative   | 动画重复时是否累计该动画的值。                 |
+
+如何使用?
+
+1. 在资源文件中定义一个`DoubleAnimation`
+
+   ```xaml
+   <Storyboard x:Key="WidthStoryboard" TargetProperty="Width">
+       <DoubleAnimation 
+            From="200" 
+            To="300" 
+            Duration="0:0:1.5" 
+            AutoReverse="True" 
+            RepeatBehavior="Forever" 
+       />
+   </Storyboard>
+   ```
+
+2. 在事件中指定启动动画
+
+   ```xaml
+   <EventTrigger RoutedEvent="MouseEnter">
+       <EventTrigger.Actions>
+           <BeginStoryboard Storyboard="{StaticResource WidthStoryboard}" />
+       </EventTrigger.Actions>
+   </EventTrigger>
+   ```
+
+3. 在代码中使用动画
+
+   ```c#
+   var fadeOutAnimation = new DoubleAnimation {
+       From = 1.0, // 初始透明度
+       To = 0.0,   // 最终透明度
+       Duration = TimeSpan.FromSeconds(0.3) // 动画持续时间
+   };
+   // 启动动画
+   BeginAnimation(OpacityProperty, fadeOutAnimation);
+   ```
+
 ## Tips
 
 - 鼠标的点击移动事件仅对能显示的控件生效，如果要全局生效可以将背景设置透明。
-- 

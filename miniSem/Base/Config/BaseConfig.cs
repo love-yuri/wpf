@@ -55,7 +55,11 @@ namespace miniSem.Base.Config {
             
             var json = File.ReadAllText(path);
             try {
-                var config = JsonConvert.DeserializeObject<T>(json) ?? throw new Exception($"{typeof(T).Name}: {path} 序列化失败!!");
+                var settings = new JsonSerializerSettings {
+                    // 总是替换数据，而不是修改原有数据,避免初始化时频繁调用该_configData用
+                    ObjectCreationHandling = ObjectCreationHandling.Replace
+                };
+                var config = JsonConvert.DeserializeObject<T>(json, settings) ?? throw new Exception($"{typeof(T).Name}: {path} 序列化失败!!");
                 Log.Debug($"{typeof(T).Name}: {path} 加载成功!!");
                 config._isInit = false;
                 return config;
@@ -73,7 +77,8 @@ namespace miniSem.Base.Config {
         /// <param name="key"></param>
         protected void SetValue(object value, [CallerMemberName] string key = "") {
             _configData[key] = value ?? throw new Exception("不可以设置value为null!!");
-            
+            Log.Debug($"设置value -> {key}, v -> {value}");
+      
             // 初始化和更改写入不生效时不写入
             if (_isInit || !SaveWhenChange) {
                 return;
@@ -97,13 +102,10 @@ namespace miniSem.Base.Config {
         /// <typeparam name="TV">值类型</typeparam>
         /// <returns></returns>
         protected TV GetValue<TV>(TV defaultValue, [CallerMemberName] string key = "") {
-            _configData.TryGetValue(key,out var v);
-            if (v == null) return defaultValue;
-            switch (v) {
-                case TV result: return result;
-                // ReSharper disable once PossibleInvalidCastException
-                default: return (TV)v;
+            if (_configData.TryGetValue(key, out var v) && v is TV result) {
+                return result;
             }
+            return defaultValue;
         }
     }
 }

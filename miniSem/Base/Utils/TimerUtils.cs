@@ -2,15 +2,13 @@
 using System.Windows;
 using System.Windows.Threading;
 using Timer = System.Timers.Timer;
-// ReSharper disable UnusedMember.Global
 
 namespace miniSem.Base.Utils {
 
-    // ReSharper disable once UnusedType.Global
     public static class TimerUtils {
 
         /// <summary>
-        /// 定时器
+        /// Timeout延迟执行
         /// </summary>
         /// <param name="mes">延迟时间</param>
         /// <param name="func">回调函数</param>

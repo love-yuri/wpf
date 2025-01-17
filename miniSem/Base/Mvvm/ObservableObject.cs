@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 namespace miniSem.Base.Mvvm {
     
     /// <summary>
-    /// 基础ViewModel 实现了变化更新
+    /// ObservableObject 实现了变化更新
     /// </summary>
-    public class BaseViewModel: INotifyPropertyChanged {
+    public class ObservableObject : INotifyPropertyChanged {
         
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
@@ -22,7 +22,7 @@ namespace miniSem.Base.Mvvm {
         /// <param name="propertyName"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        protected bool SetValue<T>(ref T field, T value, [CallerMemberName] string propertyName = null) {
+        protected bool NotifyIfChanged<T>(ref T field, T value, [CallerMemberName] string propertyName = null) {
             if (EqualityComparer<T>.Default.Equals(field, value)) {
                 return false;
             }

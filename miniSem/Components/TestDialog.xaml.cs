@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 
 namespace miniSem.Components {
     public partial class TestDialog {

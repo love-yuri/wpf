@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Documents;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
 namespace miniSem.Base.Config {
     

@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using miniSem.Base;
 using miniSem.Base.Config;
 using miniSem.Base.Mvvm;
@@ -22,14 +21,18 @@ namespace miniSem {
             
             var config = GlobalConfig.Instance;
             var version = config.Version;
-            var array = config.Arrays;
-            Log.Info($"name -> {config.Name} version -> {version}");
-            array.Add("yuri is yes");
-            config.Arrays = array;
+            // config.Person = new Person {
+            //     Name = "yuri",
+            //     Age = 18,
+            // };
+            // var array = config.Arrays;
+            Log.Info($"name -> {config.Name} version -> {version}, person -> {config.Person}");
+            // array.Add("yuri is yes");
+            // array.Add("yuri is yes");
+            // config.Arrays = array;
             config.Arrays.ForEach(k => {
                 Log.Info($"v -> {k}");
             });
-            config.Save();
 
             Log.Info($"path -> {FileUtils.CurrentPath}");
         }

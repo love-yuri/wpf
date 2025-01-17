@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
+using Newtonsoft.Json;
 
 namespace miniSem.Base.Config {
     
@@ -8,6 +11,8 @@ namespace miniSem.Base.Config {
         // 全局共享实例
         public static GlobalConfig Instance => _instance ?? (_instance = Load<GlobalConfig>());
         private static GlobalConfig _instance;
+
+        private readonly List<string> _stringEmptyList = new List<string>();
 
         public string Name {
             get => GetValue("yuri");
@@ -20,8 +25,22 @@ namespace miniSem.Base.Config {
         }
 
         public List<string> Arrays {
-            get => GetValue(new List<string>());
+            get => GetValue(_stringEmptyList);
             set => SetValue(value);
+        }
+
+        public Person Person {
+            get => GetValue(new Person());
+            set => SetValue(value);
+        }
+    }
+    
+    internal struct Person {
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        public override string ToString() {
+            return $"name: {Name}, age: {Age}";
         }
     }
 }

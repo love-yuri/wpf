@@ -25,7 +25,6 @@
         <StackPanel Orientation="Vertical" Background="{DynamicResource GlobalBackground}">
             <components:MenuBar />
             <Grid>
-                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />

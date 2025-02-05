@@ -3,28 +3,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    WindowStyle="None"
     WindowStartupLocation="CenterScreen"
     UseLayoutRounding="True"
     xmlns:components="clr-namespace:miniSem.Components"
     mc:Ignorable="d"
+    IsHitTestVisible="True"
     SnapsToDevicePixels="True"
     Name="Root"
     Background="{DynamicResource GlobalBackground}"
     Title="MainWindow" Height="350" Width="625">
     
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" GlassFrameThickness="0" />
+        <!-- 设置圆角防止出现锯齿 -->
+        <WindowChrome
+            CaptionHeight="0"
+            ResizeBorderThickness="1"
+            CornerRadius="12"
+            GlassFrameThickness="6"
+        />
     </WindowChrome.WindowChrome>
     
-    <Border Padding="5">
-        <Border.Effect>
-            <BlurEffect Radius="1" KernelType="Gaussian"/>
-        </Border.Effect>
-        
+    <Border Padding="5" Background="Transparent">
         <StackPanel Orientation="Vertical" Background="{DynamicResource GlobalBackground}">
             <components:MenuBar />
-            <Grid>
+            <Grid Margin="0 0 0 20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -34,16 +36,19 @@
                 <Slider
                     Minimum="0"
                     Maximum="100"
-                    Grid.Column="1" 
+                    Grid.Column="1"
+                    Name="Slider"
                     Style="{StaticResource SliderStyle}"  
                     IsSelectionRangeEnabled="True" 
                 />
                 <RepeatButton
+                    Click="MinusSliderValue"
                     Grid.Column="0" 
                     Style="{StaticResource OnlyTextRepeatButtonStyle}" 
                     Content="-" 
                 />
                 <RepeatButton 
+                    Click="AddSliderValue"
                     Grid.Column="2" 
                     Style="{StaticResource OnlyTextRepeatButtonStyle}" 
                     Content="+" 
@@ -53,8 +58,16 @@
                 Style="{StaticResource ColorfulButtonStyle}"
                 Width="200" 
                 Height="30" 
-                Content="炫彩按钮" 
+                Content="打开关闭动画页面" 
                 Command="{Binding ElementName=Root,Path=ClickCommand}"
+            />
+            <Button
+                Style="{StaticResource ColorfulButtonStyle}"
+                Width="200"
+                Height="30"
+                Margin="0 20 0 0"
+                Content="弹出消息"
+                Click="OpenMessageBox"
             />
         </StackPanel>
     </Border>

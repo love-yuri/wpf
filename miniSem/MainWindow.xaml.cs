@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+using System.Windows;
+using System.Windows.Input;
 using miniSem.Base;
 using miniSem.Base.Config;
 using miniSem.Base.Mvvm;
@@ -35,6 +36,18 @@ namespace miniSem {
             });
 
             Log.Info($"path -> {FileUtils.CurrentPath}");
+        }
+
+        private void OpenMessageBox(object sender, RoutedEventArgs e) {
+            MessageBox.Show("弹出消息");
+        }
+
+        private void AddSliderValue(object sender, RoutedEventArgs e) {
+            Slider.Value++;
+        }
+
+        private void MinusSliderValue(object sender, RoutedEventArgs e) {
+            Slider.Value--;
         }
     }
 }

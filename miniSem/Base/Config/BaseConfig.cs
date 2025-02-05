@@ -64,7 +64,7 @@ namespace miniSem.Base.Config {
                 config._isInit = false;
                 return config;
             } catch (Exception e) {
-                Log.Warn($"配置文件加载失败，使用默认配置 {e.Message}");
+                Log.Error($"配置文件加载失败，使用默认配置 {e.Message}");
                 return defaultConfig;
             }
         }

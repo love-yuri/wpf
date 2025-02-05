@@ -8,7 +8,6 @@ namespace miniSem.Base.Mvvm {
     
     public class BaseDialog: Window {
         protected BaseDialog() {
-            WindowStyle = WindowStyle.None;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             SnapsToDevicePixels = true;
             

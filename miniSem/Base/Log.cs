@@ -4,16 +4,32 @@
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace miniSem.Base {
-
+    internal enum LogLevel {
+        Debug,
+        Info,
+        Error,
+    }
+    
     public static class Log {
-        private static string Time => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        
+        /// <summary>
+        /// 格式化消息日志
+        /// </summary>
+        /// <param name="level">消息等级</param>
+        /// <param name="msg">消息</param>
+        /// <returns></returns>
+        internal static string FormatMsg(LogLevel level, string msg) {
+            var time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var levelStr = level.ToString().PadLeft(5);
+            return $"[{time} {levelStr}] {msg}";
+        }
 
         /// <summary>
         /// 打印日志 info级别
         /// </summary>
         /// <param name="msg"></param>
         public static void Info(string msg) {
-            Console.WriteLine($"[{Time} Info] {msg}");
+            Console.WriteLine(FormatMsg(LogLevel.Info, msg));
         }
 
         /// <summary>
@@ -22,7 +38,7 @@ namespace miniSem.Base {
         /// <param name="msg"></param>
         public static void Debug(string msg) {
         #if DEBUG
-            Info(msg);
+            Console.WriteLine(FormatMsg(LogLevel.Debug, msg)); 
         #endif
         }
 
@@ -30,8 +46,8 @@ namespace miniSem.Base {
         /// 输出到标准错误流
         /// </summary>
         /// <param name="msg"></param>
-        public static void Warn(string msg) {
-            Console.Error.WriteLine($"[{Time} Warn] {msg}");
+        public static void Error(string msg) {
+            Console.Error.WriteLine(FormatMsg(LogLevel.Error, msg));
         }
     }
 }

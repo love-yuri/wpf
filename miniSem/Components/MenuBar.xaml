@@ -27,7 +27,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Background" Value="#3064ca"/>
                     <Setter Property="Cursor" Value="Hand" />
                 </Trigger>    
             </Style.Triggers>
@@ -107,7 +107,11 @@
         </Grid.ColumnDefinitions>
         
         <Image Style="{StaticResource LogoImg}" Grid.Column="0" Source="/Assets/Logo.png" />
-        <Menu Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
+        <Menu
+            Grid.Column="1" 
+            VerticalAlignment="Center" 
+            Background="Transparent"
+        >
             <MenuItem Header="{DynamicResource File}" Style="{StaticResource MenuItemStyle}">
                 <MenuItem Command="{Binding ElementName=Root, Path=OpenCurrentPathCommand}" Header="{DynamicResource OpenCurrentFolder}" Style="{StaticResource MenuItemStyle}" />
                 <MenuItem Name="ImportImg" Header="{DynamicResource ImportImg}" Style="{StaticResource MenuItemStyle}" />

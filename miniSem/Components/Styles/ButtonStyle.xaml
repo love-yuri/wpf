@@ -70,14 +70,14 @@
     <!-- 动画样式 -->
     <Storyboard x:Key="WidthStoryboard" TargetProperty="Width">
         <DoubleAnimation
-             By="40"
+             By="20"
              Duration="0:0:0.2" 
              AutoReverse="False" 
         />
     </Storyboard>
     <Storyboard x:Key="WidthLeaveStoryboard" TargetProperty="Width">
         <DoubleAnimation 
-            By="-40"
+            By="-20"
             Duration="0:0:0.2" 
             AutoReverse="False" 
             FillBehavior="Stop"
@@ -85,14 +85,14 @@
     </Storyboard>
     <Storyboard x:Key="HeightStoryboard" TargetProperty="Height">
         <DoubleAnimation
-            By="20"
+            By="10"
             Duration="0:0:0.2" 
             AutoReverse="False" 
         />
     </Storyboard>
     <Storyboard x:Key="HeightLeaveStoryboard" TargetProperty="Height">
         <DoubleAnimation 
-            By="-20"
+            By="-10"
             Duration="0:0:0.2" 
             AutoReverse="False" 
             FillBehavior="Stop"

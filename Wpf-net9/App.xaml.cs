@@ -25,16 +25,20 @@ public partial class App {
         };
     }
 
+    /// <summary>
+    /// di依赖注入
+    /// </summary>
     private static readonly IHost Host = Microsoft.Extensions.Hosting.Host
         .CreateDefaultBuilder()
-        .ConfigureServices((context, service) => {
+        .ConfigureServices((_, service) => {
             service.AddTransient<MainWindowViewModel>(); // 返回局部实例，只有短暂的作用域
             service.AddSingleton<MainWindow>(); // 返回单例实例，整个应用程序周期内只有一个实例
         })
         .Build();
 
     [STAThread]
-    public static void Main(string[] args) {
+    public static void Main() {
+        // 启动service 服务
         Host.Start();
 
         var app = new App();

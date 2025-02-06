@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Data;
+using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -16,7 +17,7 @@ namespace WPFGallery;
 public partial class App : Application
 {
 
-    private static readonly IHost _host = Host.CreateDefaultBuilder()
+    private static readonly IHost Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
         .ConfigureServices((context, services) =>
         {
             services.AddSingleton<INavigationService, NavigationService>();
@@ -117,11 +118,11 @@ public partial class App : Application
     [STAThread]
     public static void Main()
     {
-        _host.Start();
+        Host.Start();
 
         App app = new();
         app.InitializeComponent();
-        app.MainWindow = _host.Services.GetRequiredService<MainWindow>();
+        app.MainWindow = Host.Services.GetRequiredService<MainWindow>();
         app.MainWindow.Visibility = Visibility.Visible;
         app.Run();
     }

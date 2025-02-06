@@ -1,0 +1,104 @@
+[*.cs]
+dotnet_diagnostic.CA1822.severity = none # 禁用函数可设置为static的提示
+
+indent_size = 4 # 默认换行缩进
+tab_width = 4 # 默认tap宽度
+end_of_line = lf # 默认换行符
+charset = utf-8 # 默认编码
+# **通用代码风格设置**
+
+trim_trailing_whitespace = true  # 在保存文件时自动去除每行末尾的空格
+insert_final_newline = true  # 在文件末尾自动插入一个换行符
+indent_style = space  # 使用空格进行缩进（而不是 Tab）
+
+# **C# 代码风格设置**
+
+csharp_space_after_cast = true  # 在强制类型转换后添加空格 (例如 `(int) x` 而不是 `(int)x`)
+
+# **.NET 代码格式化规则**
+
+csharp_new_line_before_catch = false  # `catch` 关键字是否换行（false = `try { } catch { }`）
+csharp_new_line_before_else = false  # `else` 关键字是否换行（false = `if { } else { }`）
+csharp_new_line_before_finally = false  # `finally` 关键字是否换行（false = `try { } finally { }`）
+csharp_new_line_before_members_in_object_initializers = false  # 对象初始化器的成员是否换行
+csharp_new_line_before_open_brace = none  # 方法、类、语句块的 `{` 是否换行（none = `{` 在同一行）
+
+# **修饰符顺序**
+# 控制修饰符（public/private 等）的默认排序
+csharp_preferred_modifier_order = public, private, protected, internal, file, new, static, abstract, virtual, sealed, readonly, override, extern, unsafe, volatile, async, required:suggestion
+
+# **字符串相关规则**
+csharp_style_prefer_utf8_string_literals = true:suggestion  # 优先使用 UTF-8 字符串字面量
+
+# **var 关键字使用规则**
+csharp_style_var_elsewhere = true:suggestion  # 在所有地方都尽量使用 `var`
+csharp_style_var_for_built_in_types = true:suggestion  # 对于内置类型（int, string 等）优先使用 `var`
+csharp_style_var_when_type_is_apparent = true:suggestion  # 当类型明显时使用 `var`（如 `var list = new List<int>();`）
+
+# **Unity 相关的序列化字段命名规则**
+dotnet_naming_rule.unity_serialized_field_rule.import_to_resharper = True
+dotnet_naming_rule.unity_serialized_field_rule.resharper_description = Unity serialized field
+dotnet_naming_rule.unity_serialized_field_rule.resharper_guid = 5f0fdb63-c892-4d2c-9324-15c80b22a7ef
+dotnet_naming_rule.unity_serialized_field_rule.severity = warning  # 违反此规则时会显示警告
+dotnet_naming_rule.unity_serialized_field_rule.style = lower_camel_case_style  # 采用小驼峰命名法（例如 `myField`）
+dotnet_naming_rule.unity_serialized_field_rule.symbols = unity_serialized_field_symbols
+dotnet_naming_style.lower_camel_case_style.capitalization = camel_case  # 统一小驼峰命名风格
+dotnet_naming_symbols.unity_serialized_field_symbols.applicable_accessibilities = *  # 适用于所有访问级别的变量
+dotnet_naming_symbols.unity_serialized_field_symbols.applicable_kinds =  # 适用于所有类型
+dotnet_naming_symbols.unity_serialized_field_symbols.resharper_applicable_kinds = unity_serialised_field  # 适用于 Unity 序列化字段
+dotnet_naming_symbols.unity_serialized_field_symbols.resharper_required_modifiers = instance  # 仅适用于实例字段
+
+# **括号相关设置**
+dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary:none  # 算术运算符不必要时不加括号（如 `a + b * c` 而不是 `(a + b) * c`）
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:none  # 其他二元运算符总是加括号以提高可读性（如 `(a && b) || c`）
+dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:none  # 关系运算符不必要时不加括号（如 `a > b && c < d`）
+
+# **类型使用风格**
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion  # 变量、参数、成员使用 `int` 而不是 `System.Int32`
+dotnet_style_predefined_type_for_member_access = true:suggestion  # 成员访问时使用 `int` 而不是 `System.Int32`
+
+# **限定符使用规则**
+dotnet_style_qualification_for_event = false:suggestion  # 事件访问时不强制使用 `this.` 限定符
+dotnet_style_qualification_for_field = false:suggestion  # 字段访问时不强制使用 `this.` 限定符
+dotnet_style_qualification_for_method = false:suggestion  # 方法调用时不强制使用 `this.` 限定符
+dotnet_style_qualification_for_property = false:suggestion  # 属性访问时不强制使用 `this.` 限定符
+
+# **访问修饰符要求**
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion  # 对非接口成员强制要求访问修饰符（如 `public`）
+
+# **ReSharper 配置**
+
+resharper_autodetect_indent_settings = true  # 自动检测缩进设置
+resharper_csharp_allow_comment_after_lbrace = true  # `{` 后是否允许有注释
+resharper_csharp_empty_block_style = together  # 空代码块的格式（`{}` 还是 `{ /*...*/ }`）
+resharper_formatter_off_tag = @formatter:off  # 关闭格式化的标记
+resharper_formatter_on_tag = @formatter:on  # 开启格式化的标记
+resharper_formatter_tags_enabled = true  # 允许使用格式化标记
+resharper_indent_preprocessor_if = outdent  # `#if` 预处理器指令是否缩进
+resharper_show_autodetect_configure_formatting_tip = false  # 是否显示自动格式化提示
+resharper_use_indent_from_vs = false  # 是否使用 Visual Studio 的缩进风格
+
+# **ReSharper 代码检查严重性设置**
+
+resharper_arrange_redundant_parentheses_highlighting = hint  # 多余的括号提示
+resharper_arrange_this_qualifier_highlighting = hint  # `this.` 限定符提示
+resharper_arrange_type_member_modifiers_highlighting = hint  # 成员修饰符排序提示
+resharper_arrange_type_modifiers_highlighting = hint  # 类型修饰符排序提示
+resharper_built_in_type_reference_style_for_member_access_highlighting = hint  # 成员访问时使用内置类型（如 `int`）
+resharper_built_in_type_reference_style_highlighting = hint  # 变量使用内置类型
+resharper_enforce_if_statement_braces_highlighting = hint  # `if` 语句是否加 `{}` 提示
+resharper_mvc_action_not_resolved_highlighting = warning  # MVC `Action` 未解析警告
+resharper_mvc_area_not_resolved_highlighting = warning  # MVC `Area` 未解析警告
+resharper_mvc_controller_not_resolved_highlighting = warning  # MVC `Controller` 未解析警告
+resharper_mvc_masterpage_not_resolved_highlighting = warning  # MVC `MasterPage` 未解析警告
+resharper_mvc_partial_view_not_resolved_highlighting = warning  # MVC `PartialView` 未解析警告
+resharper_mvc_template_not_resolved_highlighting = warning  # MVC `Template` 未解析警告
+resharper_mvc_view_component_not_resolved_highlighting = warning  # MVC `ViewComponent` 未解析警告
+resharper_mvc_view_component_view_not_resolved_highlighting = warning  # MVC `ViewComponentView` 未解析警告
+resharper_mvc_view_not_resolved_highlighting = warning  # MVC `View` 未解析警告
+resharper_razor_assembly_not_resolved_highlighting = warning  # Razor 组件未解析警告
+resharper_redundant_base_qualifier_highlighting = warning  # 冗余的 `base.` 限定符
+resharper_web_config_module_not_resolved_highlighting = warning  # `web.config` 中的模块未解析
+resharper_web_config_type_not_resolved_highlighting = warning  # `web.config` 中的类型未解析
+resharper_web_config_wrong_module_highlighting = warning  # `web.config` 中的错误模块
+

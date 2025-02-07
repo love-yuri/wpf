@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wpf_net9.Navigation;
 using Wpf_net9.ViewModels;
+using Wpf_net9.Views;
 
 namespace Wpf_net9;
 
@@ -33,6 +35,10 @@ public partial class App {
         .ConfigureServices((_, service) => {
             service.AddTransient<MainWindowViewModel>(); // 返回局部实例，只有短暂的作用域
             service.AddSingleton<MainWindow>(); // 返回单例实例，整个应用程序周期内只有一个实例
+
+            service.AddSingleton<NavigationService>();
+            service.AddSingleton<HomePage>();
+
         })
         .Build();
 

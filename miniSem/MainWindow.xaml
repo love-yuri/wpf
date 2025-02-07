@@ -16,8 +16,8 @@
     <WindowChrome.WindowChrome>
         <!-- 设置圆角防止出现锯齿 -->
         <WindowChrome
-            CaptionHeight="0"
-            ResizeBorderThickness="1"
+            CaptionHeight="28"
+            ResizeBorderThickness="6"
             CornerRadius="12"
             GlassFrameThickness="6"
         />

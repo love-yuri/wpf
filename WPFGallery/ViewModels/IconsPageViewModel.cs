@@ -1,8 +1,6 @@
 ﻿using System.Text.Json;
 using WPFGallery.Models;
-using WPFGallery.Navigation;
 using System.IO;
-using System.Reflection;
 
 namespace WPFGallery.ViewModels
 {

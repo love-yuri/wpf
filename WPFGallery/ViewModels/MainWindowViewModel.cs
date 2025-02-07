@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
 using WPFGallery.Navigation;
 using WPFGallery.Views;

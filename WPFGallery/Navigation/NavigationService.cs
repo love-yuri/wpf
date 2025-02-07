@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Windows.Navigation;
-
 namespace WPFGallery.Navigation;
 
 /// <summary>

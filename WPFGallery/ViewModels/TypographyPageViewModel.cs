@@ -1,6 +1,4 @@
-﻿using WPFGallery.Navigation;
-
-namespace WPFGallery.ViewModels
+﻿namespace WPFGallery.ViewModels
 {
     public partial class TypographyPageViewModel : ObservableObject
     {

@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace WPFGallery.Models
+﻿namespace WPFGallery.Models
 {
     /// <summary>
     /// IconData class for icons in icon page

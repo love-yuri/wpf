@@ -1,5 +1,3 @@
-using WPFGallery.Models;
-
 namespace WPFGallery.Helpers;
 
 /// <summary>

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Win32;
-using System.Windows.Documents;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Shell;
 using WPFGallery.Navigation;
 using WPFGallery.ViewModels;
@@ -9,7 +7,6 @@ using WPFGallery.Models;
 using WPFGallery.Views;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation;
-using WPFGallery.Controls;
 using System.Windows.Controls.Primitives;
 using WPFGallery.Helpers;
 

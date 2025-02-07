@@ -1,5 +1,3 @@
-using System.Windows.Controls;
-
 namespace WPFGallery.Controls;
 
 public class PageHeader : Control

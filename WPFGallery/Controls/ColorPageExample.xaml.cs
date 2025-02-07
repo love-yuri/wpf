@@ -1,8 +1,4 @@
-﻿using System.Windows.Documents;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace WPFGallery.Controls
+﻿namespace WPFGallery.Controls
 {
     /// <summary>
     /// Interaction logic for ColorPageExample.xaml

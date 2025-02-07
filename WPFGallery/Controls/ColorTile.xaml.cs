@@ -1,8 +1,5 @@
 ﻿using System.Windows.Automation.Peers;
 using System.Windows.Automation;
-using System.Windows.Documents;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPFGallery.Controls
 {

@@ -1,10 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows.Threading;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-using WPFGallery.Navigation;
+﻿using WPFGallery.Navigation;
 using WPFGallery.ViewModels;
 using WPFGallery.Views;
 using WPFGallery.ViewModels.Samples;

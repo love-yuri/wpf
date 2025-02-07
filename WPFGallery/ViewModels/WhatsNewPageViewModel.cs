@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPFGallery.Models;
-using WPFGallery.Navigation;
-
-namespace WPFGallery.ViewModels
+﻿namespace WPFGallery.ViewModels
 {
     public partial class WhatsNewPageViewModel : ObservableObject
     {

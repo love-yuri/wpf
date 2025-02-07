@@ -1,8 +1,4 @@
-﻿using System.Windows.Documents;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace WPFGallery.Views
+﻿namespace WPFGallery.Views
 {
     /// <summary>
     /// Interaction logic for StrokeSection.xaml

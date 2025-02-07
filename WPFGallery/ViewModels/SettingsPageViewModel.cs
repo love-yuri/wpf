@@ -1,7 +1,4 @@
-﻿using WPFGallery.Navigation;
-using WPFGallery.Views;
-
-namespace WPFGallery.ViewModels
+﻿namespace WPFGallery.ViewModels
 {
     public partial class SettingsPageViewModel : ObservableObject
     {

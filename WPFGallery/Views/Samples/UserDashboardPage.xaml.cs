@@ -1,7 +1,4 @@
-﻿using System.Windows.Documents;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WPFGallery.ViewModels.Samples;
+﻿using WPFGallery.ViewModels.Samples;
 
 namespace WPFGallery.Views
 {

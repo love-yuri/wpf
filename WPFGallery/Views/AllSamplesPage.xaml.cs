@@ -1,6 +1,4 @@
-﻿using System.Windows.Documents;
-using System.Windows.Shapes;
-using WPFGallery.ViewModels;
+﻿using WPFGallery.ViewModels;
 
 namespace WPFGallery.Views
 {

@@ -1,0 +1,12 @@
+﻿<Page x:Class="Wpf_net9.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Wpf_net9.Views"
+      mc:Ignorable="d"
+      Title="HomePage" Height="450" Width="800">
+    <Grid>
+        <Button Height="40" Content="点击回到主页" />
+    </Grid>
+</Page>

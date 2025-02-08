@@ -94,7 +94,7 @@ protected override void OnMouseMove(MouseEventArgs e) {
 
 ### 去除原来的窗口顶部
 
-1. window属性添加 `WindowStyle="None"`
+1. window属性添加 `WindowStyle="None"` Tips: 这样会丢失原来的窗口功能
 
 2. 去除顶部留白
 
@@ -102,6 +102,18 @@ protected override void OnMouseMove(MouseEventArgs e) {
    <WindowChrome.WindowChrome>
        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" GlassFrameThickness="0" />
    </WindowChrome.WindowChrome>
+   ```
+
+3. 更优雅的实现? (也不是很优雅)
+
+   ```c#
+   WindowChrome.SetWindowChrome(this, new WindowChrome {
+       CaptionHeight = 28, // 这里尽量小可以遮挡住顶部的东西，但是仍然会有一小丢丢，不是很完美
+       CornerRadius = default,
+       GlassFrameThickness = new Thickness(-1),
+       ResizeBorderThickness = ResizeMode == ResizeMode.NoResize ? default : new Thickness(4),
+       UseAeroCaptionButtons = true
+   });
    ```
 
    
@@ -267,3 +279,82 @@ protected override void OnMouseMove(MouseEventArgs e) {
 ## Tips
 
 - 鼠标的点击移动事件仅对能显示的控件生效，如果要全局生效可以将背景设置透明。
+
+# WPF现代化开发教程
+
+## 使用依赖注入
+
+> 为什么需要使用依赖注入？随着我们项目的增加，我们所需的数据结构就会越来越多。当我们一个类需要很多数据，每次new都很麻烦，且不易管理生命周期，容易出现问题。这时就可以使用DI依赖注入（官方实现）
+
+1. 添加`Microsoft.Extensions.Hosting` 软件包就行
+
+2. 在`App.xaml.cs`里注册你需要的服务
+
+   ```c#
+   private static readonly IHost Host = Microsoft.Extensions.Hosting.Host
+       .CreateDefaultBuilder()
+       .ConfigureServices((_, service) => {
+           service.AddTransient<MainWindowViewModel>();
+           service.AddSingleton<MainWindow>();
+       })
+       .Build();
+   ```
+
+   - `AddTransient` 返回局部实例，只有短暂的作用域
+   - `AddSingleton` 返回单例实例，整个应用程序周期内只有一个实例
+   - 他们都可以为`interface` 添加具体实现，泛型传两个参数就行 `<interface, class>`
+
+3. 自定义`Main`启动方法
+
+   1. 修改App.xaml的生成方式为page（右击修改属性或者直接复制添加csproj)
+
+      ```xaml
+      <ItemGroup>
+          <ApplicationDefinition Remove="App.xaml"/>
+          <Page Include="App.xaml"/>
+      </ItemGroup>
+      ```
+
+   2. 添加`Main`方法 添加 `STAThread`属性
+
+      ```c#
+      [STAThread]
+      public static void Main() {
+          
+      }
+      ```
+
+   3. 启动程序前先启动 `Service` : `Host.Start();`
+
+   4. 启动app并开始执行 Window需要设置Visibility
+
+      ```c#
+       var app = new App();
+      app.InitializeComponent();
+      var window = Host.Services.GetRequiredService<MainWindow>();
+      window.Visibility = Visibility.Visible;
+      app.Run();
+      ```
+
+   5. 完整代码
+
+      ```c#
+      [STAThread]
+      public static void Main() {
+          // 启动service 服务
+          Host.Start();
+      
+          var app = new App();
+          app.InitializeComponent();
+          var window = Host.Services.GetRequiredService<MainWindow>();
+          window.Visibility = Visibility.Visible;
+          app.Run();
+      }
+      ```
+
+### 常用
+
+1. 如果别的类需要获取服务 直接在构造函数里添加 `IServiceProvider` 依赖就行
+2. `IServiceProvider.GetRequiredService` 可以使用泛型传递，也可以将类的`Type`传入
+3. 
+

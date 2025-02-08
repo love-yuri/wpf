@@ -15,14 +15,10 @@ namespace WPFGallery;
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window {
+public partial class MainWindow {
     private readonly INavigationService _navigationService;
 
-    private readonly IServiceProvider _serviceProvider;
-
-    public MainWindow(MainWindowViewModel viewModel, IServiceProvider serviceProvider,
-        INavigationService navigationService) {
-        _serviceProvider = serviceProvider;
+    public MainWindow(MainWindowViewModel viewModel, INavigationService navigationService) {
         ViewModel = viewModel;
         DataContext = this;
         InitializeComponent();
@@ -59,17 +55,15 @@ public partial class MainWindow : Window {
     }
 
     private void MainWindow_StateChanged(object? sender, EventArgs e) {
-        if (WindowState == WindowState.Maximized)
-            MainGrid.Margin = new Thickness(8);
-        else
-            MainGrid.Margin = default;
+        MainGrid.Margin = WindowState == WindowState.Maximized ? new Thickness(8) : default;
     }
 
     private void ControlsList_SelectedItemChanged() {
         if (ControlsList.SelectedItem is ControlInfoDataItem navItem) {
             _navigationService.Navigate(navItem.PageType);
-            var tvi = ControlsList.ItemContainerGenerator.ContainerFromItem(navItem) as TreeViewItem;
-            if (tvi != null) tvi.BringIntoView();
+            if (ControlsList.ItemContainerGenerator.ContainerFromItem(navItem) is TreeViewItem tvi) {
+                tvi.BringIntoView();
+            }
         }
     }
 
@@ -116,19 +110,18 @@ public partial class MainWindow : Window {
     }
 
     private void OnNavigating(object? sender, NavigatingEventArgs e) {
-        List<ControlInfoDataItem> list = ViewModel.GetNavigationItemHierarchyFromPageType(e.PageType);
+        var list = ViewModel.GetNavigationItemHierarchyFromPageType(e.PageType);
 
         if (list.Count > 0) {
             TreeViewItem? selectedTreeViewItem = null;
             ItemsControl itemsControl = ControlsList;
-            foreach (var item in list) {
-                var tvi = itemsControl.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
-                if (tvi != null) {
-                    tvi.IsExpanded = true;
-                    tvi.UpdateLayout();
-                    itemsControl = tvi;
-                    selectedTreeViewItem = tvi;
-                }
+            foreach (var tvi in list.Select(
+                item => itemsControl.ItemContainerGenerator.ContainerFromItem(item)
+            ).OfType<TreeViewItem>()) {
+                tvi.IsExpanded = true;
+                tvi.UpdateLayout();
+                itemsControl = tvi;
+                selectedTreeViewItem = tvi;
             }
 
             if (selectedTreeViewItem != null) {
@@ -151,14 +144,14 @@ public partial class MainWindow : Window {
         if (e.Key == Key.Enter)
             SelectedItemChanged(
                 ControlsList.ItemContainerGenerator.ContainerFromItem((sender as TreeView)
-                    .SelectedItem) as TreeViewItem);
+                    ?.SelectedItem) as TreeViewItem);
     }
 
     private void ControlsList_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
         if (e.OriginalSource is ToggleButton) return;
 
         SelectedItemChanged(
-            ControlsList.ItemContainerGenerator.ContainerFromItem((sender as TreeView).SelectedItem) as TreeViewItem);
+            ControlsList.ItemContainerGenerator.ContainerFromItem((sender as TreeView)?.SelectedItem) as TreeViewItem);
     }
 
     private void SettingsButton_Click(object sender, RoutedEventArgs e) {

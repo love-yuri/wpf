@@ -1,34 +1,25 @@
-using WPFGallery.Navigation;
 using WPFGallery.Models;
+using WPFGallery.Navigation;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class BasicInputPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Basic Input";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Controls for getting user input";
+public partial class BasicInputPageViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
-        [ObservableProperty]
-        private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Basic Input");
+    [ObservableProperty]
+    private ICollection<ControlInfoDataItem> _navigationCards =
+        ControlsInfoDataSource.Instance.GetControlsInfo("Basic Input");
 
-        private readonly INavigationService _navigationService;
+    [ObservableProperty] private string _pageDescription = "Controls for getting user input";
 
-        public BasicInputPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+    [ObservableProperty] private string _pageTitle = "Basic Input";
 
-        [RelayCommand]
-        public void Navigate(object pageType){
-            if (pageType is Type page)
-            {
-                _navigationService.NavigateTo(page);
-            }
-        }
+    public BasicInputPageViewModel(INavigationService navigationService) {
+        _navigationService = navigationService;
+    }
 
-        
+    [RelayCommand]
+    public void Navigate(object pageType) {
+        if (pageType is Type page) _navigationService.NavigateTo(page);
     }
 }

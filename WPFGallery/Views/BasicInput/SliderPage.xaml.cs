@@ -1,21 +1,17 @@
 ﻿using WPFGallery.ViewModels;
 
-namespace WPFGallery.Views
-{
-    /// <summary>
-    /// Interaction logic for SliderPage.xaml
-    /// </summary>
-    public partial class SliderPage : Page
-    {
-        public SliderPageViewModel ViewModel { get; }
+namespace WPFGallery.Views;
 
-        public SliderPage(SliderPageViewModel viewModel)
-        {
-            ViewModel = viewModel;
-            DataContext = this;
+/// <summary>
+///     Interaction logic for SliderPage.xaml
+/// </summary>
+public partial class SliderPage : Page {
+    public SliderPage(SliderPageViewModel viewModel) {
+        ViewModel = viewModel;
+        DataContext = this;
 
-            InitializeComponent();
-        }
-
+        InitializeComponent();
     }
+
+    public SliderPageViewModel ViewModel { get; }
 }

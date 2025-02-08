@@ -1,29 +1,20 @@
-﻿
-namespace WPFGallery.ViewModels;
+﻿namespace WPFGallery.ViewModels;
 
-public partial class CheckBoxPageViewModel : ObservableObject 
-{
-	[ObservableProperty]
-	private string _pageTitle = "CheckBox";
+public partial class CheckBoxPageViewModel : ObservableObject {
+    [ObservableProperty] private bool _optionOneCheckBoxChecked;
 
-	[ObservableProperty]
-	private string _pageDescription = "";
+    [ObservableProperty] private bool _optionThreeCheckBoxChecked;
 
-    [ObservableProperty]
-    private bool? _selectAllCheckBoxChecked = null;
+    [ObservableProperty] private bool _optionTwoCheckBoxChecked = true;
 
-    [ObservableProperty]
-    private bool _optionOneCheckBoxChecked = false;
+    [ObservableProperty] private string _pageDescription = "";
 
-    [ObservableProperty]
-    private bool _optionTwoCheckBoxChecked = true;
+    [ObservableProperty] private string _pageTitle = "CheckBox";
 
-    [ObservableProperty]
-    private bool _optionThreeCheckBoxChecked = false;
+    [ObservableProperty] private bool? _selectAllCheckBoxChecked;
 
     [RelayCommand]
-    private void OnSelectAllChecked(object sender)
-    {
+    private void OnSelectAllChecked(object sender) {
         if (sender is not CheckBox checkBox)
             return;
 
@@ -32,14 +23,11 @@ public partial class CheckBoxPageViewModel : ObservableObject
                 OptionOneCheckBoxChecked && OptionTwoCheckBoxChecked && OptionThreeCheckBoxChecked
             );
 
-        if (checkBox.IsChecked == true)
-        {
+        if (checkBox.IsChecked == true) {
             OptionOneCheckBoxChecked = true;
             OptionTwoCheckBoxChecked = true;
             OptionThreeCheckBoxChecked = true;
-        }
-        else if (checkBox.IsChecked == false)
-        {
+        } else if (checkBox.IsChecked == false) {
             OptionOneCheckBoxChecked = false;
             OptionTwoCheckBoxChecked = false;
             OptionThreeCheckBoxChecked = false;
@@ -47,8 +35,7 @@ public partial class CheckBoxPageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OnSingleChecked(string option)
-    {
+    private void OnSingleChecked(string option) {
         if (OptionOneCheckBoxChecked && OptionTwoCheckBoxChecked && OptionThreeCheckBoxChecked)
             SelectAllCheckBoxChecked = true;
         else if (!OptionOneCheckBoxChecked && !OptionTwoCheckBoxChecked && !OptionThreeCheckBoxChecked)

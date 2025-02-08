@@ -1,34 +1,25 @@
-using WPFGallery.Navigation;
 using WPFGallery.Models;
+using WPFGallery.Navigation;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class StatusAndInfoPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Status & Info";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Controls to show progress and extra information";
+public partial class StatusAndInfoPageViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
-        [ObservableProperty]
-        private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Status & Info");
+    [ObservableProperty]
+    private ICollection<ControlInfoDataItem> _navigationCards =
+        ControlsInfoDataSource.Instance.GetControlsInfo("Status & Info");
 
-        private readonly INavigationService _navigationService;
+    [ObservableProperty] private string _pageDescription = "Controls to show progress and extra information";
 
-        public StatusAndInfoPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+    [ObservableProperty] private string _pageTitle = "Status & Info";
 
-        [RelayCommand]
-        public void Navigate(object pageType){
-            if (pageType is Type page)
-            {
-                _navigationService.NavigateTo(page);
-            }
-        }
+    public StatusAndInfoPageViewModel(INavigationService navigationService) {
+        _navigationService = navigationService;
+    }
 
-        
+    [RelayCommand]
+    public void Navigate(object pageType) {
+        if (pageType is Type page) _navigationService.NavigateTo(page);
     }
 }

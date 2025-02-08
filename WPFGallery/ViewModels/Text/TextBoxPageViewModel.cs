@@ -1,13 +1,7 @@
-﻿
-namespace WPFGallery.ViewModels
-{
-    public partial class TextBoxPageViewModel : ObservableObject 
-{
-	[ObservableProperty]
-	private string _pageTitle = "TextBox";
+﻿namespace WPFGallery.ViewModels;
 
-	[ObservableProperty]
-	private string _pageDescription = "";
+public partial class TextBoxPageViewModel : ObservableObject {
+    [ObservableProperty] private string _pageDescription = "";
 
-    }
+    [ObservableProperty] private string _pageTitle = "TextBox";
 }

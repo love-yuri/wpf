@@ -5,14 +5,8 @@
 
 namespace WPFGallery.ViewModels;
 
-public partial class ProgressBarPageViewModel : ObservableObject 
-{
-	[ObservableProperty]
-	private string _pageTitle = "ProgressBar";
+public partial class ProgressBarPageViewModel : ObservableObject {
+    [ObservableProperty] private string _pageDescription = "";
 
-	[ObservableProperty]
-	private string _pageDescription = "";
-
-
+    [ObservableProperty] private string _pageTitle = "ProgressBar";
 }
-

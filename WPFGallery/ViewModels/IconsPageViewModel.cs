@@ -1,40 +1,31 @@
-﻿using System.Text.Json;
+﻿using System.IO;
+using System.Text.Json;
 using WPFGallery.Models;
-using System.IO;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class IconsPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Icons";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Guide showing how to use icons in your application.";
+public partial class IconsPageViewModel : ObservableObject {
+    [ObservableProperty] private ICollection<IconData> _icons;
 
-        [ObservableProperty]
-        private ICollection<IconData> _icons;
+    [ObservableProperty] private string _pageDescription = "Guide showing how to use icons in your application.";
 
-        [ObservableProperty]
-        private IconData? _selectedIcon;
+    [ObservableProperty] private string _pageTitle = "Icons";
 
-        public IconsPageViewModel()
-        {
-            var jsonText = ReadIconData();
-            _icons = JsonSerializer.Deserialize<List<IconData>>(jsonText);
-            _selectedIcon = _icons.FirstOrDefault();
-        }
+    [ObservableProperty] private IconData? _selectedIcon;
 
-        private string ReadIconData()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "WPFGallery.Models.IconsData.json";
+    public IconsPageViewModel() {
+        var jsonText = ReadIconData();
+        _icons = JsonSerializer.Deserialize<List<IconData>>(jsonText);
+        _selectedIcon = _icons.FirstOrDefault();
+    }
 
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+    private string ReadIconData() {
+        var assembly = Assembly.GetExecutingAssembly();
+        var resourceName = "WPFGallery.Models.IconsData.json";
+
+        using (var stream = assembly.GetManifestResourceStream(resourceName))
+        using (var reader = new StreamReader(stream)) {
+            return reader.ReadToEnd();
         }
     }
 }

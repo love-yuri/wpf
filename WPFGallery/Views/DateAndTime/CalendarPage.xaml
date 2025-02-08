@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:WPFGallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFGallery.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="CalendarPage"
     d:DesignHeight="450"
@@ -25,7 +24,8 @@
                 <controls:ControlExample.XamlCode>
                     &lt;Calendar/&gt;
                 </controls:ControlExample.XamlCode>
-                <Calendar HorizontalAlignment="Left" AutomationProperties.Name="Default" KeyboardNavigation.IsTabStop="False"/>
+                <Calendar HorizontalAlignment="Left" AutomationProperties.Name="Default"
+                          KeyboardNavigation.IsTabStop="False" />
             </controls:ControlExample>
         </ScrollViewer>
     </Grid>

@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:WPFGallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFGallery.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="TextBlockPage"
     d:DesignHeight="450"
@@ -17,7 +16,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <controls:PageHeader Margin="0,0,0,32" Title="{Binding ViewModel.PageTitle}" Description="{Binding ViewModel.PageDescription}" />
+        <controls:PageHeader Margin="0,0,0,32" Title="{Binding ViewModel.PageTitle}"
+                             Description="{Binding ViewModel.PageDescription}" />
 
         <ScrollViewer Grid.Row="1" Margin="0,0,0,24" Padding="0,0,24,0">
             <StackPanel Margin="0,0,0,24">
@@ -43,15 +43,16 @@
                     HeaderText="A TextBlock with inline text elements."
                     XamlCode="&lt;TextBlock FontSize=&quot;14&quot;&gt;             &#10;&#9;&lt;Run FontFamily=&quot;Times New Roman&quot; Foreground=&quot;DarkGray&quot;&gt;             &#10;&#9;&#9;Text in a TextBlock doesn&#39;t have to be a simple string.             &#10;&#9;&lt;/Run&gt;             &#10;&#9;&lt;LineBreak /&gt;             &#10;&#9;&lt;Span&gt;             &#10;&#9;&#9;Text can be &lt;Bold&gt;bold&lt;/Bold&gt;             &#10;&#9;&#9;, &lt;Italic&gt;italic&lt;/Italic&gt;             &#10;&#9;&#9;, or &lt;Underline&gt;underlined&lt;/Underline&gt;.             &#10;&#9;&lt;/Span&gt;             &#10;&lt;/TextBlock&gt;">
                     <TextBlock FontSize="14">
-                        <Run FontFamily="Times New Roman" Foreground="{DynamicResource TextFillColorPrimaryBrush}" >
+                        <Run FontFamily="Times New Roman" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
                             Text in a TextBlock doesn't have to be a simple string.
                         </Run>
                         <LineBreak />
                         <Span>
-                            Text can be <Bold>bold</Bold>, 
-                            <Italic>italic</Italic>, 
+                            Text can be <Bold>bold</Bold>,
+                            <Italic>italic</Italic>,
                             or <Underline>underlined</Underline>
-                            .</Span>
+                            .
+                        </Span>
                     </TextBlock>
                 </controls:ControlExample>
                 <controls:ControlExample

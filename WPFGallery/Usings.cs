@@ -11,10 +11,8 @@ global using System.Windows.Data;
 global using System.Windows.Input;
 global using System.Windows.Markup;
 global using System.Windows.Media;
-
 global using System.Windows.Controls;
 global using System.Windows.Media.Imaging;
-
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 // global using Microsoft.Extensions.Configuration;

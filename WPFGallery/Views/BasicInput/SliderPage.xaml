@@ -44,7 +44,8 @@
                         <Grid Grid.Column="1">
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="Output:" />
-                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="{Binding ViewModel.SimpleSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
+                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                           Text="{Binding ViewModel.SimpleSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -73,7 +74,8 @@
                         <Grid Grid.Column="1">
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="Output:" />
-                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="{Binding ViewModel.RangeSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
+                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                           Text="{Binding ViewModel.RangeSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -103,7 +105,8 @@
                         <Grid Grid.Column="1">
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="Output:" />
-                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="{Binding ViewModel.MarksSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
+                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                           Text="{Binding ViewModel.MarksSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -134,7 +137,8 @@
                         <Grid Grid.Column="1">
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="Output:" />
-                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="{Binding ViewModel.VerticalSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
+                                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                           Text="{Binding ViewModel.VerticalSliderValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SliderPage}, Mode=OneWay}" />
                             </StackPanel>
                         </Grid>
                     </Grid>

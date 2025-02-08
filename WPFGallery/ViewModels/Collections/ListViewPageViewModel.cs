@@ -1,46 +1,35 @@
-
 using WPFGallery.Models;
 
 namespace WPFGallery.ViewModels;
 
-public partial class ListViewPageViewModel : ObservableObject 
-{
-	[ObservableProperty]
-	private string _pageTitle = "ListView";
+public partial class ListViewPageViewModel : ObservableObject {
+    [ObservableProperty] private ObservableCollection<Person> _basicListViewItems;
 
-	[ObservableProperty]
-	private string _pageDescription = "";
+    [ObservableProperty] private SelectionMode _listViewSelectionMode = SelectionMode.Single;
 
-    private int _listViewSelectionModeComboBoxSelectedIndex = 0;
+    private int _listViewSelectionModeComboBoxSelectedIndex;
 
-    public int ListViewSelectionModeComboBoxSelectedIndex
-    {
+    [ObservableProperty] private string _pageDescription = "";
+
+    [ObservableProperty] private string _pageTitle = "ListView";
+
+    public ListViewPageViewModel() {
+        _basicListViewItems = GeneratePersons();
+    }
+
+    public int ListViewSelectionModeComboBoxSelectedIndex {
         get => _listViewSelectionModeComboBoxSelectedIndex;
-        set
-        {
-            SetProperty<int>(ref _listViewSelectionModeComboBoxSelectedIndex, value);
+        set {
+            SetProperty(ref _listViewSelectionModeComboBoxSelectedIndex, value);
             UpdateListViewSelectionMode(value);
         }
     }
 
-    [ObservableProperty]
-    private SelectionMode _listViewSelectionMode = SelectionMode.Single;
-
-    [ObservableProperty]
-    private ObservableCollection<Person> _basicListViewItems;
-
-    public ListViewPageViewModel()
-    {
-        _basicListViewItems = GeneratePersons();
-    }
-
-    private ObservableCollection<Person> GeneratePersons()
-    {
+    private ObservableCollection<Person> GeneratePersons() {
         var random = new Random();
         var persons = new ObservableCollection<Person>();
 
-        var names = new[]
-        {
+        var names = new[] {
             "John",
             "Winston",
             "Adrianna",
@@ -56,8 +45,7 @@ public partial class ListViewPageViewModel : ObservableObject
             "Jamie",
             "Alexander"
         };
-        var surnames = new[]
-        {
+        var surnames = new[] {
             "Doe",
             "Tapia",
             "Cisneros",
@@ -72,8 +60,7 @@ public partial class ListViewPageViewModel : ObservableObject
             "Fry",
             "Carroll"
         };
-        var companies = new[]
-        {
+        var companies = new[] {
             "Luminary Nexus",
             "CrestWave Dynamics",
             "Horizon Ventures",
@@ -83,7 +70,7 @@ public partial class ListViewPageViewModel : ObservableObject
             "Elysium Crest Holdings"
         };
 
-        for (int i = 0; i < 50; i++)
+        for (var i = 0; i < 50; i++)
             persons.Add(
                 new Person(
                     names[random.Next(0, names.Length)],
@@ -95,10 +82,8 @@ public partial class ListViewPageViewModel : ObservableObject
         return persons;
     }
 
-    private void UpdateListViewSelectionMode(int selectionModeIndex)
-    {
-        ListViewSelectionMode = selectionModeIndex switch
-        {
+    private void UpdateListViewSelectionMode(int selectionModeIndex) {
+        ListViewSelectionMode = selectionModeIndex switch {
             1 => SelectionMode.Multiple,
             2 => SelectionMode.Extended,
             _ => SelectionMode.Single

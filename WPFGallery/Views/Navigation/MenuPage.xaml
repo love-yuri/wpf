@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:WPFGallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFGallery.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MenuPage"
     d:DesignHeight="450"
@@ -29,7 +28,7 @@
                     <StackPanel>
                         <StackPanel.Resources>
                             <Style TargetType="MenuItem" BasedOn="{StaticResource DefaultMenuItemStyle}">
-                                <EventSetter Event="Click" Handler="MenuItem_Click"/>
+                                <EventSetter Event="Click" Handler="MenuItem_Click" />
                             </Style>
                         </StackPanel.Resources>
                         <TextBlock x:Name="StatusMenuItem" Text="" />
@@ -58,36 +57,36 @@
                                 <MenuItem Header="Select All" />
                             </MenuItem>
                             <Separator />
-                            <MenuItem AutomationProperties.Name="Bold" Tag="Bold" >
+                            <MenuItem AutomationProperties.Name="Bold" Tag="Bold">
                                 <MenuItem.Header>
                                     <TextBlock
-                                    AutomationProperties.Name="Bold"
-                                    Focusable="False"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    FontSize="12"
-                                    Text="&#xE8DD;" />
+                                        AutomationProperties.Name="Bold"
+                                        Focusable="False"
+                                        FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                        FontSize="12"
+                                        Text="&#xE8DD;" />
                                 </MenuItem.Header>
                             </MenuItem>
 
-                            <MenuItem AutomationProperties.Name="Italic" Tag="Italic" >
+                            <MenuItem AutomationProperties.Name="Italic" Tag="Italic">
                                 <MenuItem.Header>
                                     <TextBlock
-                                    AutomationProperties.Name="Italic"
-                                    Focusable="False"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    FontSize="12"
-                                    Text="&#xE8DB;" />
+                                        AutomationProperties.Name="Italic"
+                                        Focusable="False"
+                                        FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                        FontSize="12"
+                                        Text="&#xE8DB;" />
                                 </MenuItem.Header>
                             </MenuItem>
 
-                            <MenuItem AutomationProperties.Name="Underlined" Tag="Underlined" >
+                            <MenuItem AutomationProperties.Name="Underlined" Tag="Underlined">
                                 <MenuItem.Header>
                                     <TextBlock
-                                    AutomationProperties.Name="Underlined"
-                                    Focusable="False"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    FontSize="12"
-                                    Text="&#xE8DC;" />
+                                        AutomationProperties.Name="Underlined"
+                                        Focusable="False"
+                                        FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                        FontSize="12"
+                                        Text="&#xE8DC;" />
                                 </MenuItem.Header>
                             </MenuItem>
                         </Menu>

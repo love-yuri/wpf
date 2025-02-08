@@ -1,34 +1,25 @@
-using WPFGallery.Navigation;
 using WPFGallery.Models;
+using WPFGallery.Navigation;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class DateAndTimePageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Date & Calendar";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Controls for date and calendar";
+public partial class DateAndTimePageViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
-        [ObservableProperty]
-        private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Date & Calendar");
+    [ObservableProperty]
+    private ICollection<ControlInfoDataItem> _navigationCards =
+        ControlsInfoDataSource.Instance.GetControlsInfo("Date & Calendar");
 
-        private readonly INavigationService _navigationService;
+    [ObservableProperty] private string _pageDescription = "Controls for date and calendar";
 
-        public DateAndTimePageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+    [ObservableProperty] private string _pageTitle = "Date & Calendar";
 
-        [RelayCommand]
-        public void Navigate(object pageType){
-            if (pageType is Type page)
-            {
-                _navigationService.NavigateTo(page);
-            }
-        }
+    public DateAndTimePageViewModel(INavigationService navigationService) {
+        _navigationService = navigationService;
+    }
 
-        
+    [RelayCommand]
+    public void Navigate(object pageType) {
+        if (pageType is Type page) _navigationService.NavigateTo(page);
     }
 }

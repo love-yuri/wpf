@@ -1,53 +1,46 @@
-﻿
-namespace WPFGallery.Controls
-{
-    /// <summary>
-    /// Interaction logic for HeaderTile.xaml
-    /// </summary>
-    public partial class HeaderTile : UserControl
-    {
-        public HeaderTile()
-        {
-            InitializeComponent();
-        }
+﻿namespace WPFGallery.Controls;
 
-        public string Title
-        {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
-        }
-        public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(HeaderTile), new PropertyMetadata(""));
+/// <summary>
+///     Interaction logic for HeaderTile.xaml
+/// </summary>
+public partial class HeaderTile : UserControl {
+    public static readonly DependencyProperty TitleProperty =
+        DependencyProperty.Register("Title", typeof(string), typeof(HeaderTile), new PropertyMetadata(""));
 
-        public string Description
-        {
-            get { return (string)GetValue(DescriptionProperty); }
-            set { SetValue(DescriptionProperty, value); }
-        }
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("ColorExplanation", typeof(string), typeof(HeaderTile), new PropertyMetadata(""));
+    public static readonly DependencyProperty DescriptionProperty =
+        DependencyProperty.Register("ColorExplanation", typeof(string), typeof(HeaderTile), new PropertyMetadata(""));
 
-        public string Link
-        {
-            get { return (string)GetValue(LinkProperty); }
-            set { SetValue(LinkProperty, value); }
-        }
+    public static readonly DependencyProperty LinkProperty =
+        DependencyProperty.Register("Link", typeof(string), typeof(HeaderTile), new PropertyMetadata(null));
 
-        public static readonly DependencyProperty LinkProperty = 
-            DependencyProperty.Register("Link", typeof(string), typeof(HeaderTile), new PropertyMetadata(null));
+    public static readonly DependencyProperty SourceProperty =
+        DependencyProperty.Register("Source", typeof(object), typeof(HeaderTile), new PropertyMetadata(null));
 
-        public object Source
-        {
-            get { return (object)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
+    public HeaderTile() {
+        InitializeComponent();
+    }
 
-        public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(object), typeof(HeaderTile), new PropertyMetadata(null));
+    public string Title {
+        get => (string)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
 
-        private void RootButton_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(Link) { UseShellExecute = true });
-        }
+    public string Description {
+        get => (string)GetValue(DescriptionProperty);
+        set => SetValue(DescriptionProperty, value);
+    }
+
+    public string Link {
+        get => (string)GetValue(LinkProperty);
+        set => SetValue(LinkProperty, value);
+    }
+
+    public object Source {
+        get => (object)GetValue(SourceProperty);
+        set => SetValue(SourceProperty, value);
+    }
+
+    private void RootButton_Click(object sender, RoutedEventArgs e) {
+        Process.Start(new ProcessStartInfo(Link) { UseShellExecute = true });
     }
 }

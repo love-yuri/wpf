@@ -1,32 +1,25 @@
-using WPFGallery.Navigation;
 using WPFGallery.Models;
+using WPFGallery.Navigation;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class SamplesPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Samples";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Sample pages for common scenarios";
+public partial class SamplesPageViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
-        [ObservableProperty]
-        private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Samples");
+    [ObservableProperty]
+    private ICollection<ControlInfoDataItem> _navigationCards =
+        ControlsInfoDataSource.Instance.GetControlsInfo("Samples");
 
-        private readonly INavigationService _navigationService;
+    [ObservableProperty] private string _pageDescription = "Sample pages for common scenarios";
 
-        public SamplesPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+    [ObservableProperty] private string _pageTitle = "Samples";
 
-        [RelayCommand]
-        public void Navigate(object pageType){
-            if (pageType is Type page)
-            {
-                _navigationService.NavigateTo(page);
-            }
-        }
+    public SamplesPageViewModel(INavigationService navigationService) {
+        _navigationService = navigationService;
+    }
+
+    [RelayCommand]
+    public void Navigate(object pageType) {
+        if (pageType is Type page) _navigationService.NavigateTo(page);
     }
 }

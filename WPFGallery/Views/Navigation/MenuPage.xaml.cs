@@ -1,41 +1,33 @@
-﻿
-using WPFGallery.ViewModels;
+﻿using WPFGallery.ViewModels;
 
-namespace WPFGallery.Views
-{
-    /// <summary>
-    /// Interaction logic for MenuPage.xaml
-    /// </summary>
-    public partial class MenuPage : Page
-    {
-        public MenuPageViewModel ViewModel { get; }
+namespace WPFGallery.Views;
 
-        public MenuPage(MenuPageViewModel viewModel)
-        {
-            ViewModel = viewModel;
-            DataContext = this;
+/// <summary>
+///     Interaction logic for MenuPage.xaml
+/// </summary>
+public partial class MenuPage : Page {
+    public MenuPage(MenuPageViewModel viewModel) {
+        ViewModel = viewModel;
+        DataContext = this;
 
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is MenuItem menuItem)
-            {
-                if (e.OriginalSource is MenuItem originalMenuItem && originalMenuItem == menuItem)
-                {
-                    StatusMenuItem.Visibility = Visibility.Visible;
-                    StatusMenuItem.Text = (menuItem.Tag != null) ? $"You pressed {menuItem.Tag}" : $"You pressed {menuItem.Header}";
-                }
-                if (menuItem.Parent is MenuItem parentMenuItem)
-                {
-                    parentMenuItem.Focus();
-                }
-                else
-                {
-                    menuItem.Focus();
-                }
+    public MenuPageViewModel ViewModel { get; }
+
+    private void MenuItem_Click(object sender, RoutedEventArgs e) {
+        if (sender is MenuItem menuItem) {
+            if (e.OriginalSource is MenuItem originalMenuItem && originalMenuItem == menuItem) {
+                StatusMenuItem.Visibility = Visibility.Visible;
+                StatusMenuItem.Text = menuItem.Tag != null
+                    ? $"You pressed {menuItem.Tag}"
+                    : $"You pressed {menuItem.Header}";
             }
+
+            if (menuItem.Parent is MenuItem parentMenuItem)
+                parentMenuItem.Focus();
+            else
+                menuItem.Focus();
         }
     }
 }

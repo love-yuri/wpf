@@ -1,35 +1,26 @@
-using WPFGallery.Navigation;
 using WPFGallery.Models;
+using WPFGallery.Navigation;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class CollectionsPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Collections";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Controls for collection presentation";
+public partial class CollectionsPageViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
 
-        [ObservableProperty]
-        private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Collections");
+    [ObservableProperty]
+    private ICollection<ControlInfoDataItem> _navigationCards =
+        ControlsInfoDataSource.Instance.GetControlsInfo("Collections");
 
-        private readonly INavigationService _navigationService;
+    [ObservableProperty] private string _pageDescription = "Controls for collection presentation";
 
-        public CollectionsPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+    [ObservableProperty] private string _pageTitle = "Collections";
 
-        [RelayCommand]
-        public void Navigate(object pageType){
-            if (pageType is Type page)
-            {
-                _navigationService.NavigateTo(page);
-            }
-        }
+    public CollectionsPageViewModel(INavigationService navigationService) {
+        _navigationService = navigationService;
+    }
 
-        
+    [RelayCommand]
+    public void Navigate(object pageType) {
+        if (pageType is Type page) _navigationService.NavigateTo(page);
     }
 }

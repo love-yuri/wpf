@@ -1,38 +1,29 @@
-
 using WPFGallery.Models;
 
 namespace WPFGallery.ViewModels;
 
-public partial class DataGridPageViewModel : ObservableObject 
-{
-	[ObservableProperty]
-	private string _pageTitle = "DataGrid";
+public partial class DataGridPageViewModel : ObservableObject {
+    [ObservableProperty] private string _pageDescription = "";
 
-	[ObservableProperty]
-	private string _pageDescription = "";
+    [ObservableProperty] private string _pageTitle = "DataGrid";
 
-    [ObservableProperty]
-    private ObservableCollection<Product> _productsCollection;
+    [ObservableProperty] private ObservableCollection<Product> _productsCollection;
 
-    public DataGridPageViewModel()
-    {
+    public DataGridPageViewModel() {
         _productsCollection = GenerateProducts();
     }
 
-    private ObservableCollection<Product> GenerateProducts()
-    {
+    private ObservableCollection<Product> GenerateProducts() {
         var random = new Random();
-        var products = new ObservableCollection<Product> { };
+        var products = new ObservableCollection<Product>();
 
         var adjectives = new[] { "Red", "Blueberry" };
         var names = new[] { "Marmalade", "Dumplings", "Soup" };
         //var units = new[] { "grams", "kilograms", "milliliters" };
 
-        for (int i = 0; i < 50; i++)
-        {
+        for (var i = 0; i < 50; i++)
             products.Add(
-                new Product
-                {
+                new Product {
                     ProductId = i,
                     ProductCode = i,
                     ProductName =
@@ -43,8 +34,7 @@ public partial class DataGridPageViewModel : ObservableObject
                     UnitsInStock = random.Next(0, 100)
                 }
             );
-        }
 
         return products;
-    }    
+    }
 }

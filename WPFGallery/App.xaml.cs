@@ -1,23 +1,20 @@
 ﻿using WPFGallery.Navigation;
 using WPFGallery.ViewModels;
-using WPFGallery.Views;
 using WPFGallery.ViewModels.Samples;
+using WPFGallery.Views;
 
 namespace WPFGallery;
 
 /// <summary>
-/// Interaction logic for App.xaml
+///     Interaction logic for App.xaml
 /// </summary>
-public partial class App : Application
-{
-
+public partial class App : Application {
     private static readonly IHost Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
-        .ConfigureServices((context, services) =>
-        {
+        .ConfigureServices((context, services) => {
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowViewModel>();
-            
+
             services.AddTransient<DashboardPage>();
             services.AddTransient<DashboardPageViewModel>();
 
@@ -110,8 +107,7 @@ public partial class App : Application
 
 
     [STAThread]
-    public static void Main()
-    {
+    public static void Main() {
         Host.Start();
 
         App app = new();
@@ -121,4 +117,3 @@ public partial class App : Application
         app.Run();
     }
 }
-

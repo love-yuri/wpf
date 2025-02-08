@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:WPFGallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFGallery.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="CheckBox"
     d:DesignHeight="450"
@@ -22,7 +21,8 @@
 
         <ScrollViewer Grid.Row="1" Margin="0,0,0,24" Padding="0,0,24,0">
             <StackPanel Margin="0,0,0,24">
-                <controls:ControlExample Margin="10" HeaderText="A 2-state CheckBox." XamlCode="&lt;CheckBox Content=&quot;Two-state CheckBox&quot; /&gt;">
+                <controls:ControlExample Margin="10" HeaderText="A 2-state CheckBox."
+                                         XamlCode="&lt;CheckBox Content=&quot;Two-state CheckBox&quot; /&gt;">
                     <CheckBox AutomationProperties.Name="Sample Two State" Content="Two-state CheckBox" />
                 </controls:ControlExample>
 

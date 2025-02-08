@@ -3,17 +3,15 @@
 namespace WPFGallery.Views;
 
 /// <summary>
-/// Interaction logic for ComboBox.xaml
+///     Interaction logic for ComboBox.xaml
 /// </summary>
-public partial class ComboBoxPage : Page
-{
-public ComboBoxPageViewModel ViewModel { get; }
+public partial class ComboBoxPage : Page {
+    public ComboBoxPage(ComboBoxPageViewModel viewModel) {
+        ViewModel = viewModel;
+        DataContext = this;
 
-public ComboBoxPage(ComboBoxPageViewModel viewModel)
-{
-    ViewModel = viewModel;
-    DataContext = this;
+        InitializeComponent();
+    }
 
-    InitializeComponent();
-}
+    public ComboBoxPageViewModel ViewModel { get; }
 }

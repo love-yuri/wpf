@@ -1,47 +1,26 @@
 using System.Windows.Threading;
+using WPFGallery.Models;
 using WPFGallery.Navigation;
 using WPFGallery.Views;
-using WPFGallery.Models;
 
 namespace WPFGallery.ViewModels;
 
-public partial class MainWindowViewModel : ObservableObject
-{
-    [ObservableProperty]
-    private string _applicationTitle = "WPF Gallery Preview";
+public partial class MainWindowViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
     private readonly DispatcherTimer _timer;
 
+    [ObservableProperty] private string _applicationTitle = "WPF Gallery Preview";
+
+    [ObservableProperty] private bool _canNavigateback;
+
+    [ObservableProperty] private ICollection<ControlInfoDataItem> _controls;
+
     private string _searchText = string.Empty;
 
-    [ObservableProperty]
-    private ICollection<ControlInfoDataItem> _controls;
-    [ObservableProperty]
-    private ControlInfoDataItem? _selectedControl;
-    private readonly INavigationService _navigationService;
-    [ObservableProperty]
-    private bool _canNavigateback;
+    [ObservableProperty] private ControlInfoDataItem? _selectedControl;
 
-    [RelayCommand]
-    public void Settings()
-    {
-        _navigationService.Navigate(typeof(SettingsPage));
-    }
-
-    [RelayCommand]
-    public void Back()
-    {
-        _navigationService.NavigateBack();
-    }
-
-    [RelayCommand]
-    public void Forward()
-    {
-        _navigationService.NavigateForward();
-    }
-
-    public MainWindowViewModel(INavigationService navigationService)
-    {
+    public MainWindowViewModel(INavigationService navigationService) {
         _controls = ControlsInfoDataSource.Instance.ControlsInfo;
         _navigationService = navigationService;
 
@@ -50,111 +29,91 @@ public partial class MainWindowViewModel : ObservableObject
         _timer.Tick += PerformSearchNavigation;
     }
 
-    public void UpdateSearchText(string searchText)
-    {
+    [RelayCommand]
+    public void Settings() {
+        _navigationService.Navigate(typeof(SettingsPage));
+    }
+
+    [RelayCommand]
+    public void Back() {
+        _navigationService.NavigateBack();
+    }
+
+    [RelayCommand]
+    public void Forward() {
+        _navigationService.NavigateForward();
+    }
+
+    public void UpdateSearchText(string searchText) {
         _searchText = searchText;
         _timer.Stop();
         _timer.Start();
     }
 
-    private void PerformSearchNavigation(object? sender, EventArgs e)
-    {
+    private void PerformSearchNavigation(object? sender, EventArgs e) {
         _timer.Stop();
-        if (string.IsNullOrWhiteSpace(_searchText))
-        {
-            return;
-        }
+        if (string.IsNullOrWhiteSpace(_searchText)) return;
 
         _navigationService.NavigateTo(GetNavigationPageTypeFromName(_searchText, _controls));
     }
 
-    private Type? GetNavigationPageTypeFromName(string name, ICollection<ControlInfoDataItem> pages)
-    {
+    private Type? GetNavigationPageTypeFromName(string name, ICollection<ControlInfoDataItem> pages) {
         Type? type = null;
 
-        if(pages == null)
-        {
-            return null;
-        }
+        if (pages == null) return null;
 
-        foreach(var item in pages)
-        {
-            if (item.Title.Equals(name, StringComparison.OrdinalIgnoreCase))
-            {
-                return item.PageType!;
-            }
+        foreach (var item in pages) {
+            if (item.Title.Equals(name, StringComparison.OrdinalIgnoreCase)) return item.PageType!;
 
             type = GetNavigationPageTypeFromName(name, item.Items);
 
-            if(type != null)
-            {
-                return type;
-            }
+            if (type != null) return type;
         }
+
         return null;
     }
 
-    internal List<ControlInfoDataItem> GetNavigationItemHierarchyFromPageType(Type? pageType)
-    {
+    internal List<ControlInfoDataItem> GetNavigationItemHierarchyFromPageType(Type? pageType) {
         List<ControlInfoDataItem> list = new List<ControlInfoDataItem>();
         Stack<ControlInfoDataItem> _stack = new Stack<ControlInfoDataItem>();
         Stack<ControlInfoDataItem> _revStack = new Stack<ControlInfoDataItem>();
-        
-        if(pageType == null)
-        {
-            return list;
-        }
 
-        bool found = false;
+        if (pageType == null) return list;
 
-        foreach(var item in Controls)
-        {
+        var found = false;
+
+        foreach (var item in Controls) {
             _stack.Push(item);
             found = FindNavigationItemsHierarchyFromPageType(pageType, item.Items, ref _stack);
-            if(found)
-            {
-                break;
-            }
+            if (found) break;
             _stack.Pop();
         }
 
-        while(_stack.Count > 0)
-        {
-            _revStack.Push(_stack.Pop());
-        }
+        while (_stack.Count > 0) _revStack.Push(_stack.Pop());
 
-        foreach(var item in _revStack)
-        {
-            list.Add(item);
-        }
+        foreach (var item in _revStack) list.Add(item);
 
         return list;
     }
 
-    private bool FindNavigationItemsHierarchyFromPageType(Type pageType, ICollection<ControlInfoDataItem> pages, ref Stack<ControlInfoDataItem> stack)
-    {
+    private bool FindNavigationItemsHierarchyFromPageType(Type pageType, ICollection<ControlInfoDataItem> pages,
+        ref Stack<ControlInfoDataItem> stack) {
         var item = stack.Peek();
-        bool found = false;
+        var found = false;
 
-        if(pageType == item.PageType)
-        {
-            return true;
-        }
+        if (pageType == item.PageType) return true;
 
-        foreach(var child in item.Items)
-        {
+        foreach (var child in item.Items) {
             stack.Push(child);
             found = FindNavigationItemsHierarchyFromPageType(pageType, child.Items, ref stack);
-            if(found) { return true; }
+            if (found) return true;
             stack.Pop();
         }
 
         return false;
     }
 
-    internal void UpdateCanNavigateBack()
-    {
-        CanNavigateback = _navigationService.IsBackHistoryNonEmpty();  
+    internal void UpdateCanNavigateBack() {
+        CanNavigateback = _navigationService.IsBackHistoryNonEmpty();
     }
-
 }

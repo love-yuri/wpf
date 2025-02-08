@@ -1,33 +1,24 @@
-using WPFGallery.Navigation;
 using WPFGallery.Models;
+using WPFGallery.Navigation;
 
-namespace WPFGallery.ViewModels
-{
-    public partial class TextPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string _pageTitle = "Text";
+namespace WPFGallery.ViewModels;
 
-        [ObservableProperty]
-        private string _pageDescription = "Controls for displaying and editing text";
+public partial class TextPageViewModel : ObservableObject {
+    private readonly INavigationService _navigationService;
 
-        [ObservableProperty]
-        private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Text");
-        private readonly INavigationService _navigationService;
+    [ObservableProperty]
+    private ICollection<ControlInfoDataItem> _navigationCards = ControlsInfoDataSource.Instance.GetControlsInfo("Text");
 
-        public TextPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+    [ObservableProperty] private string _pageDescription = "Controls for displaying and editing text";
 
-        [RelayCommand]
-        public void Navigate(object pageType){
-            if (pageType is Type page)
-            {
-                _navigationService.NavigateTo(page);
-            }
-        }
+    [ObservableProperty] private string _pageTitle = "Text";
 
-        
+    public TextPageViewModel(INavigationService navigationService) {
+        _navigationService = navigationService;
+    }
+
+    [RelayCommand]
+    public void Navigate(object pageType) {
+        if (pageType is Type page) _navigationService.NavigateTo(page);
     }
 }

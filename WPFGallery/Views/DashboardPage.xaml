@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFGallery.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:WPFGallery.Controls"
     Title="DashboardPage"
@@ -20,10 +19,11 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Border CornerRadius="8,0,0,0" 
+            <Border CornerRadius="8,0,0,0"
                     Grid.RowSpan="2">
                 <Border.Background>
-                    <ImageBrush ImageSource="pack://application:,,,/Assets/win11-dashboard.light.png" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="pack://application:,,,/Assets/win11-dashboard.light.png"
+                                Stretch="UniformToFill" />
                 </Border.Background>
                 <Border.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -39,20 +39,22 @@
                 CornerRadius="8,0,0,0">
 
                 <StackPanel Margin="36,48,0,0" VerticalAlignment="Top" TextElement.Foreground="Black">
-                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text=".NET 9" Margin="0,0,0,2" AutomationProperties.HeadingLevel="Level1" />
-                    <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Text="WPF Gallery" Margin="0,0,0,8" AutomationProperties.HeadingLevel="Level1" />
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text=".NET 9" Margin="0,0,0,2"
+                               AutomationProperties.HeadingLevel="Level1" />
+                    <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Text="WPF Gallery" Margin="0,0,0,8"
+                               AutomationProperties.HeadingLevel="Level1" />
                     <Border Background="Transparent" CornerRadius="8,8,8,8" MaxWidth="300" HorizontalAlignment="Left">
                         <TextBlock
                             MaxWidth="300"
                             Margin="0,0,0,0"
                             Style="{StaticResource BodyStrongTextBlockStyle}"
                             Text="A collection of controls, guidelines and samples to build great WPF applications"
-                            TextAlignment="Left" HorizontalAlignment="Left" Padding="0,8,12,8"/>
+                            TextAlignment="Left" HorizontalAlignment="Left" Padding="0,8,12,8" />
                     </Border>
                 </StackPanel>
             </Border>
-            
-            <controls:TileGallery Grid.Row="1" HorizontalAlignment="Stretch" Margin="0"/>
+
+            <controls:TileGallery Grid.Row="1" HorizontalAlignment="Stretch" Margin="0" />
 
             <ItemsControl
                 Grid.Row="2"

@@ -1,20 +1,17 @@
 ﻿using WPFGallery.ViewModels;
 
-namespace WPFGallery.Views
-{
-    /// <summary>
-    /// Interaction logic for ImagePage.xaml
-    /// </summary>
-    public partial class ImagePage : Page
-    {
-    public ImagePageViewModel ViewModel { get; }
+namespace WPFGallery.Views;
 
-    public ImagePage(ImagePageViewModel viewModel)
-    {
+/// <summary>
+///     Interaction logic for ImagePage.xaml
+/// </summary>
+public partial class ImagePage : Page {
+    public ImagePage(ImagePageViewModel viewModel) {
         ViewModel = viewModel;
         DataContext = this;
 
         InitializeComponent();
     }
-    }
+
+    public ImagePageViewModel ViewModel { get; }
 }

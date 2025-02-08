@@ -4,23 +4,16 @@
 // All Rights Reserved.
 
 using System.IO;
-using System.Windows.Automation.Peers;
 using System.Windows.Automation;
+using System.Windows.Automation.Peers;
 
 namespace WPFGallery.Controls;
 
 /// <summary>
-/// A control that displays an example of a control
+///     A control that displays an example of a control
 /// </summary>
-
 [ContentProperty(nameof(ExampleContent))]
-public class ControlExample : Control
-{
-    static ControlExample()
-    {
-        CommandManager.RegisterClassCommandBinding(typeof(ControlExample), new CommandBinding(ApplicationCommands.Copy, Copy_SourceCode));
-    }
-
+public class ControlExample : Control {
     public static readonly DependencyProperty HeaderTextProperty = DependencyProperty.Register(
         nameof(HeaderText),
         typeof(string),
@@ -69,65 +62,57 @@ public class ControlExample : Control
         )
     );
 
-    public string? HeaderText
-    {
+    static ControlExample() {
+        CommandManager.RegisterClassCommandBinding(typeof(ControlExample),
+            new CommandBinding(ApplicationCommands.Copy, Copy_SourceCode));
+    }
+
+    public string? HeaderText {
         get => (string)GetValue(HeaderTextProperty);
         set => SetValue(HeaderTextProperty, value);
     }
 
-    public object? ExampleContent
-    {
+    public object? ExampleContent {
         get => GetValue(ExampleContentProperty);
         set => SetValue(ExampleContentProperty, value);
     }
 
-    public string? XamlCode
-    {
+    public string? XamlCode {
         get => (string)GetValue(XamlCodeProperty);
         set => SetValue(XamlCodeProperty, value);
     }
 
-    public Uri? XamlCodeSource
-    {
+    public Uri? XamlCodeSource {
         get => (Uri)GetValue(XamlCodeSourceProperty);
         set => SetValue(XamlCodeSourceProperty, value);
     }
 
-    public string? CsharpCode
-    {
+    public string? CsharpCode {
         get => (string)GetValue(CsharpCodeProperty);
         set => SetValue(CsharpCodeProperty, value);
     }
 
-    public Uri? CsharpCodeSource
-    {
+    public Uri? CsharpCodeSource {
         get => (Uri)GetValue(CsharpCodeSourceProperty);
         set => SetValue(CsharpCodeSourceProperty, value);
     }
 
-    private void OnXamlCodeSourceChanged(Uri uri)
-    {
+    private void OnXamlCodeSourceChanged(Uri uri) {
         XamlCode = LoadResource(uri);
     }
 
-    private void OnCsharpCodeSourceChanged(Uri uri)
-    {
+    private void OnCsharpCodeSourceChanged(Uri uri) {
         CsharpCode = LoadResource(uri);
     }
 
-    private static void Copy_SourceCode(object sender, RoutedEventArgs e)
-    {
+    private static void Copy_SourceCode(object sender, RoutedEventArgs e) {
         if (sender is ControlExample controlExample)
-        {
-            if(!string.IsNullOrEmpty(controlExample.XamlCode))
-            {
-                try
-                {
-                    switch (((ExecutedRoutedEventArgs)e).Parameter.ToString())
-                    {
+            if (!string.IsNullOrEmpty(controlExample.XamlCode))
+                try {
+                    switch (((ExecutedRoutedEventArgs)e).Parameter.ToString()) {
                         case "Copy_XamlCode":
                             Clipboard.SetText(controlExample.XamlCode);
-                            AutomationPeer peer = UIElementAutomationPeer.CreatePeerForElement((Button)e.OriginalSource);
+                            var peer = UIElementAutomationPeer.CreatePeerForElement((Button)e.OriginalSource);
                             peer.RaiseNotificationEvent(
                                 AutomationNotificationKind.Other,
                                 AutomationNotificationProcessing.ImportantMostRecent,
@@ -141,33 +126,21 @@ public class ControlExample : Control
                         default:
                             throw new InvalidOperationException();
                     }
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     MessageBox.Show("Error copying to clipboard: " + ex.Message);
                 }
-            }
-        }
     }
 
-    private static string LoadResource(Uri uri)
-    {
-        try
-        {
-            if (Application.GetResourceStream(uri) is not { } steamInfo)
-            {
-                return String.Empty;
-            }
+    private static string LoadResource(Uri uri) {
+        try {
+            if (Application.GetResourceStream(uri) is not { } steamInfo) return string.Empty;
 
             using StreamReader streamReader = new(steamInfo.Stream, Encoding.UTF8);
 
             return streamReader.ReadToEnd();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Debug.WriteLine(e);
             return e.ToString();
         }
     }
 }
-

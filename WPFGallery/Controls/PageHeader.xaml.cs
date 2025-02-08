@@ -1,7 +1,6 @@
 namespace WPFGallery.Controls;
 
-public class PageHeader : Control
-{
+public class PageHeader : Control {
     public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
         nameof(Title),
         typeof(string),
@@ -23,20 +22,17 @@ public class PageHeader : Control
         new PropertyMetadata(true)
     );
 
-    public string? Title
-    {
+    public string? Title {
         get => (string?)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
 
-    public string? Description
-    {
+    public string? Description {
         get => (string?)GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
     }
 
-    public bool ShowDescription
-    {
+    public bool ShowDescription {
         get => (bool)GetValue(ShowDescriptionProperty);
         set => SetValue(ShowDescriptionProperty, value);
     }

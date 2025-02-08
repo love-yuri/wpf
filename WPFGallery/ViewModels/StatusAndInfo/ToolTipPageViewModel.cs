@@ -5,14 +5,8 @@
 
 namespace WPFGallery.ViewModels;
 
-public partial class ToolTipPageViewModel : ObservableObject 
-{
-	[ObservableProperty]
-	private string _pageTitle = "ToolTip";
+public partial class ToolTipPageViewModel : ObservableObject {
+    [ObservableProperty] private string _pageDescription = "";
 
-	[ObservableProperty]
-	private string _pageDescription = "";
-
-
+    [ObservableProperty] private string _pageTitle = "ToolTip";
 }
-

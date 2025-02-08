@@ -1,17 +1,14 @@
-﻿namespace WPFGallery.Navigation
-{
-    /// <summary>
-    /// Event arguments for the Navigating event.
-    /// </summary>
-    public class NavigatingEventArgs
-    {
-        public Type? PageType { get; set; } = null;
+﻿namespace WPFGallery.Navigation;
 
-        public NavigatingEventArgs() { }
+/// <summary>
+///     Event arguments for the Navigating event.
+/// </summary>
+public class NavigatingEventArgs {
+    public NavigatingEventArgs() { }
 
-        public NavigatingEventArgs(Type pageType)
-        {
-            PageType = pageType;
-        }
+    public NavigatingEventArgs(Type pageType) {
+        PageType = pageType;
     }
+
+    public Type? PageType { get; set; }
 }

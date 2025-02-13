@@ -46,8 +46,9 @@ public partial class MainWindow {
     public MainWindowViewModel ViewModel { get; }
 
     private void UpdateWindowBackground() {
-        if (!Utility.IsBackdropDisabled() && !Utility.IsBackdropSupported())
+        if (!Utility.IsBackdropDisabled() && !Utility.IsBackdropSupported()) {
             SetResourceReference(BackgroundProperty, "WindowBackground");
+        }
     }
 
     private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e) {
@@ -79,17 +80,6 @@ public partial class MainWindow {
             CloseButton.Visibility = Visibility.Collapsed;
         }
     }
-
-    //private void SearchBox_KeyUp(object sender, KeyEventArgs e)
-    //{
-    //    ViewModel.UpdateSearchText(SearchBox.Text);
-    //}
-
-    //private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
-    //{
-    //    SearchBox.Text = "";
-    //    ViewModel.UpdateSearchText(SearchBox.Text);
-    //}
 
     private void MinimizeWindow(object sender, RoutedEventArgs e) {
         WindowState = WindowState.Minimized;
@@ -137,7 +127,9 @@ public partial class MainWindow {
 
     private void SelectedItemChanged(TreeViewItem? tvi) {
         ControlsList_SelectedItemChanged();
-        if (tvi != null) tvi.IsExpanded = !tvi.IsExpanded;
+        if (tvi != null) {
+            tvi.IsExpanded = !tvi.IsExpanded;
+        }
     }
 
     private void ControlsList_PreviewKeyDown(object sender, KeyEventArgs e) {

@@ -1,7 +1,7 @@
 .idea/
 
 bin/
-
+packages/
 obj/
 
 *.user.*

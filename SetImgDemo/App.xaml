@@ -1,0 +1,16 @@
+﻿<Application x:Class="SetImgDemo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SetImgDemo"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SEM_UI_CtrlEx;component/StyleSheet/SliderStyles.xaml"/>
+                <ResourceDictionary Source="/SEM_UI_CtrlEx;component/StyleSheet/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="/SEM_UI_CtrlEx;component/StyleSheet/ControlStyles.xaml"/>
+                <ResourceDictionary Source="/SEM_UI_CtrlEx;component/StyleSheet/ContextMenuStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

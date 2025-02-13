@@ -1,0 +1,39 @@
+﻿<Window x:Class="SetImgDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SetImgDemo"
+        xmlns:semUiViewer="clr-namespace:SEM_UI_Viewer;assembly=SEM_UI_Viewer"
+        WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance local:MainWindow, IsDesignTimeCreatable=False}"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        d:DesignHeight="1104" d:DesignWidth="1026" Width="1420" Height="1112">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1024" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <semUiViewer:ViewerTabCtrl x:Name="SemViewerTc" Width="1024" Height="1112" Margin="10,10,10,10"   />
+        <!-- <Viewbox Grid.Column="0" Width="1024" Height="1024"> -->
+        <!--     <Image Name="Img" /> -->
+        <!-- </Viewbox> -->
+        <Border Grid.Column="1" Padding="2" Margin="0 20 6 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Name="ButtonOrigin" Content="渲染原生分辨率" Click="SendImg" />
+                <Button Grid.Row="1" Name="Button1024" Margin="0 10" Content="邻接算法渲染" Click="Send1024Img" />
+                <Button Grid.Row="2" Name="Button10242" Margin="0 10" Content="双线性插值算法渲染" Click="Send1024Img2" />
+                <Button Grid.Row="3" Name="Button10243" Margin="0 10" Content="双三次插值算法渲染" Click="Send1024Img3" />
+                <TextBlock Grid.Row="4" Name="LogLabel" TextWrapping="WrapWithOverflow" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
